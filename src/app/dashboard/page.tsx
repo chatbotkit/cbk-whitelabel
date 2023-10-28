@@ -25,9 +25,8 @@ async function getChatbots() {
   return data.items;
 }
 
-export default async function DashbaordPage() {
+export default async function DashboardPage() {
   const bots = await getChatbots();
-  console.log(bots);
 
   return (
     <main>
