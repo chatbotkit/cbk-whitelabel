@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 import { UserButton } from "@clerk/nextjs";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 
 const tabs = [
   { title: "Overview", href: "/dashboard" },
@@ -13,6 +13,7 @@ const tabs = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const params = useParams();
 
   return (
     <nav className="fixed top-0 w-full left-0 bg-white z-[100] border-b border-main flex flex-col justify-between">
@@ -75,13 +76,19 @@ export default function Navbar() {
                 <Link
                   href={item.href}
                   className={`${
-                    pathname !== item.href && "opacity-50 hover:opacity-100"
+                    pathname === item.href ||
+                    (item.href === "/dashboard/bots" && params.id)
+                      ? ""
+                      : "opacity-50 hover:opacity-100 transition duration-150"
                   } h-full text-sm flex items-center`}
                 >
                   {item.title}
                 </Link>
-                {pathname == item.href && (
+                {pathname === item.href ||
+                (item.href === "/dashboard/bots" && params.id) ? (
                   <div className="absolute w-full bottom-0 bg-black h-[2px]" />
+                ) : (
+                  ""
                 )}
               </div>
             ))}

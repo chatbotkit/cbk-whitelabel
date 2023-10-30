@@ -16,7 +16,11 @@ import { Select } from "@/components/ui/Select";
 import { buttonVariants } from "@/components/ui/Button";
 import FormButton from "./ui/FormButton";
 
-export default function CreateChatbotDialog({ createChatbotAction }: any) {
+export default function CreateChatbotDialog({
+  createChatbotAction,
+}: {
+  createChatbotAction: any;
+}) {
   const [open, setOpen] = useState(false);
   const [botState, setBotState] = useState({
     name: "",
