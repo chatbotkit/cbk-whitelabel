@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
+import Toast from "@/components/Toast";
 
 export const metadata: Metadata = {
   title: "Tuner | Dashboard",
@@ -15,6 +16,7 @@ export default function DashboardLayout({
   return (
     <>
       <Navbar />
+      <Toast />
       <main className="pt-16">{children}</main>
     </>
   );

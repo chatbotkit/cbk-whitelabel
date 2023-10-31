@@ -29,6 +29,7 @@ async function getChatbots() {
 
 export default async function BotsPage() {
   const bots: BotType[] = await getChatbots();
+  console.log(bots);
 
   return (
     <main>
