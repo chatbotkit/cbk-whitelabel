@@ -68,7 +68,7 @@ export async function deleteChatbotAction(id: string) {
   revalidatePath("/dashboard/bots");
 }
 
-export async function createChatbotSession() {
+export async function createChatbotSessionAction() {
   const { token } = await getUserAuth();
   const cbk = new ChatBotKit({
     secret: token!,

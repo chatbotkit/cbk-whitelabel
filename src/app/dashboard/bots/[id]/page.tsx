@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 import ChatBox from "@/components/ChatBox";
-import { createChatbotSession } from "@/server-actions/chatbot-actions";
+import { createChatbotSessionAction } from "@/server-actions/chatbot-actions";
 
 async function getChatbot(id: string) {
   const { token } = await getUserAuth();
@@ -73,7 +73,7 @@ export default async function BotPage({
         {currentTab === "playground" && (
           <>
             <h2 className="mb-5 text-lg font-medium">Playground</h2>
-            <ChatBox createChatbotSession={createChatbotSession} />
+            <ChatBox createChatbotSessionAction={createChatbotSessionAction} />
           </>
         )}
         {currentTab === "settings" && (

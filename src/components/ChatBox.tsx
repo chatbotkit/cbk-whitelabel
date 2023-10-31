@@ -3,7 +3,7 @@
 import { AutoTextarea, useConversationManager } from "@chatbotkit/react";
 import FormButton from "./ui/FormButton";
 
-export default function ChatBox({ createChatbotSession }: any) {
+export default function ChatBox({ createChatbotSessionAction }: any) {
   const {
     conversationId,
     setConversationId,
@@ -59,7 +59,7 @@ export default function ChatBox({ createChatbotSession }: any) {
       ) : (
         <form
           action={async () => {
-            const data = await createChatbotSession();
+            const data = await createChatbotSessionAction();
             setConversationId(data.conversationId);
             setToken(data.token);
           }}
