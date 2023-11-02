@@ -23,12 +23,6 @@ export default function CreateDatasetDialog() {
     description: "",
   });
 
-  async function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-
-    const { name, description } = datasetState;
-  }
-
   return (
     <Dialog>
       <DialogTrigger className={buttonVariants({ variant: "outline" })}>
