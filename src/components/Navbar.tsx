@@ -77,7 +77,8 @@ export default function Navbar() {
                   href={item.href}
                   className={`${
                     pathname === item.href ||
-                    (item.href === "/dashboard/bots" && params.id)
+                    (item.href === "/dashboard/bots" && params.botId) ||
+                    (item.href === "/dashboard/datasets" && params.datasetId)
                       ? ""
                       : "opacity-50 hover:opacity-100 transition duration-150"
                   } h-full text-sm flex items-center`}
@@ -85,7 +86,8 @@ export default function Navbar() {
                   {item.title}
                 </Link>
                 {pathname === item.href ||
-                (item.href === "/dashboard/bots" && params.id) ? (
+                (item.href === "/dashboard/bots" && params.botId) ||
+                (item.href === "/dashboard/datasets" && params.datasetId) ? (
                   <div className="absolute w-full bottom-0 bg-black h-[2px]" />
                 ) : (
                   ""

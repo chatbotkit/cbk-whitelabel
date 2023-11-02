@@ -86,7 +86,6 @@ export async function createChatbotSessionAction() {
     // Step 3: pass the conversationId and the token to the front-end
     return { conversationId, token };
   } catch (error) {
-    console.error(error);
     return {
       error: {
         message: "Something went wrong. Please try again!",

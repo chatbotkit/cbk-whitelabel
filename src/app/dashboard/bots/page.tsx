@@ -48,7 +48,7 @@ export default async function BotsPage() {
       <section className="container mt-10">
         <h2 className="mb-5 text-lg font-medium">Your chatbots</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
-          {bots.map((item) => (
+          {bots?.map((item) => (
             <Link key={item.id} href={`/dashboard/bots/${item.id}`}>
               <Card className="h-full">
                 <CardHeader>

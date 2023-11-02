@@ -12,7 +12,10 @@ import {
 } from "@/components/ui/Dialog";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/TextArea";
-import { Button, buttonVariants } from "@/components/ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
+import { createDatasetAction } from "@/server-actions/dataset-actions";
+import { toast } from "sonner";
+import FormButton from "./ui/FormButton";
 
 export default function CreateDatasetDialog() {
   const [datasetState, setDatasetState] = useState({
@@ -35,7 +38,17 @@ export default function CreateDatasetDialog() {
         <DialogHeader>
           <DialogTitle>Create a dataset</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+        <form
+          action={async (formData) => {
+            const error = await createDatasetAction(formData);
+            if (error) {
+              toast.error("We couldn't create a dataset. Please try again!");
+            } else {
+              toast.success("You dataset is ready!");
+            }
+          }}
+          className="flex flex-col space-y-4"
+        >
           <div>
             <label htmlFor="name" className="text-sm font-medium block mb-2">
               Name
@@ -74,12 +87,13 @@ export default function CreateDatasetDialog() {
             <DialogClose className={buttonVariants({ variant: "outline" })}>
               Cancel
             </DialogClose>
-            <Button
+            <FormButton
+              pendingText="Processing..."
               disabled={!datasetState.name || !datasetState.description}
               type="submit"
             >
               Create chatbot
-            </Button>
+            </FormButton>
           </div>
         </form>
       </DialogContent>

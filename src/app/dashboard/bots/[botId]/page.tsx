@@ -25,11 +25,11 @@ export default async function BotPage({
   params,
   searchParams,
 }: {
-  params: { id: string };
+  params: { botId: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   const currentTab = searchParams?.tab || tabs[0];
-  const bot: BotType = await getChatbot(params.id);
+  const bot: BotType = await getChatbot(params.botId);
 
   return (
     <main>
@@ -73,7 +73,7 @@ export default async function BotPage({
         {currentTab === "playground" && (
           <>
             <h2 className="mb-5 text-lg font-medium">Playground</h2>
-            <ChatBox createChatbotSessionAction={createChatbotSessionAction} />
+            <ChatBox />
           </>
         )}
         {currentTab === "settings" && (
