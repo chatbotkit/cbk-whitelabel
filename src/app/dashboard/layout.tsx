@@ -15,7 +15,7 @@ export default function DashboardLayout({
     <>
       <Navbar />
       <Toast />
-      <main className="pt-16">{children}</main>
+      <main className="pt-16 bg-zinc-50 min-h-screen">{children}</main>
     </>
   )
 }

@@ -1,4 +1,5 @@
 import { getUserAuth } from '@/lib/auth'
+import Heading from '@/components/Heading'
 import AddRecordDialog from '@/components/AddRecordDialog'
 
 type RecordType = {
@@ -25,7 +26,7 @@ async function getDataset(id: string) {
   )
   const recordsData = await recordsRes.json()
 
-  return { dataset: data, records: recordsData as RecordType[] }
+  return { dataset: data, records: recordsData.items as RecordType[] }
 }
 
 export default async function Page({
@@ -37,22 +38,25 @@ export default async function Page({
 
   return (
     <main>
-      <section className="py-14 border-b border-main bg-zinc-50">
-        <div className="container flex flex-col gap-4 md:flex-row items-start md:items-center justify-between">
-          <div>
-            <h1 className="text-black text-2xl font-medium">{dataset.name}</h1>
-            <p className="text-zinc-500 text-sm">{dataset.description}</p>
-          </div>
-          <AddRecordDialog datasetId={params.datasetId} />
-        </div>
-      </section>
+      <Heading title={dataset.name} description={dataset.description}>
+        <AddRecordDialog datasetId={params.datasetId} />
+      </Heading>
 
       {/* Records */}
       <section className="container mt-10">
         <h2 className="mb-5 text-lg font-medium">Dataset Records</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
+        <div className="flex flex-col gap-4">
           {records.length ? (
-            <>{records?.map(({ text, id }) => <div key={id}>{text}</div>)}</>
+            <>
+              {records?.map(({ text, id }) => (
+                <div
+                  key={id}
+                  className="border border-zinc-200 rounded-md py-3 px-4"
+                >
+                  {text}
+                </div>
+              ))}
+            </>
           ) : (
             'No records found'
           )}

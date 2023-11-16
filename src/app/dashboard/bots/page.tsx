@@ -5,6 +5,7 @@ import {
 } from '@heroicons/react/24/solid'
 
 import { getUserAuth } from '@/lib/auth'
+import Heading from '@/components/Heading'
 import { ChatBotKit } from '@/lib/chatbotkit'
 import { Button } from '@/components/ui/Button'
 import {
@@ -42,17 +43,12 @@ export default async function Page() {
 
   return (
     <main>
-      <section className="py-14 border-b border-main bg-zinc-50">
-        <div className="container flex flex-col gap-4 md:flex-row items-start md:items-center justify-between">
-          <div>
-            <h1 className="text-black text-2xl font-medium">Chatbots</h1>
-            <p className="text-zinc-500 text-sm">
-              Find all you chat conversations...
-            </p>
-          </div>
-          <Button variant="default">Create Chatbot</Button>
-        </div>
-      </section>
+      <Heading
+        title="Chatbots"
+        description="Find all you chat conversations..."
+      >
+        <Button variant="default">Create Conversation</Button>
+      </Heading>
       {/* Chatbots */}
       <section className="container mt-10">
         <h2 className="mb-5 text-lg font-medium">Your chatbots</h2>

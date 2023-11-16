@@ -1,10 +1,11 @@
 import { CircleStackIcon } from '@heroicons/react/20/solid'
 
 import { getUserAuth } from '@/lib/auth'
+import Heading from '@/components/Heading'
 import { ChatBotKit } from '@/lib/chatbotkit'
+import { createChatbot } from '@/server-actions/chatbot-actions'
 import CreateChatbotDialog from '@/components/CreateChatbotDialog'
 import CreateDatasetDialog from '@/components/CreateDatasetDialog'
-import { createChatbot } from '@/server-actions/chatbot-actions'
 import {
   Card,
   CardDescription,
@@ -34,20 +35,15 @@ export default async function DashboardPage() {
 
   return (
     <main>
-      <section className="py-14 border-b border-main bg-zinc-50">
-        <div className="container flex flex-col gap-4 md:flex-row md:items-center justify-between">
-          <div>
-            <h1 className="text-black text-2xl font-medium">Overview</h1>
-            <p className="text-zinc-500 text-sm">
-              Find all your datasets, conversations and more...
-            </p>
-          </div>
-          <div className="flex items-center space-x-2">
-            <CreateChatbotDialog createChatbotAction={createChatbot} />
-            <CreateDatasetDialog />
-          </div>
+      <Heading
+        title="Overview"
+        description="Find all your datasets, conversations and more..."
+      >
+        <div className="flex items-center space-x-2">
+          <CreateChatbotDialog createChatbotAction={createChatbot} />
+          <CreateDatasetDialog />
         </div>
-      </section>
+      </Heading>
       {/* Datasets */}
       <section className="container mt-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
