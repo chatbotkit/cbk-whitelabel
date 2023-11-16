@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react'
 
 export default function Heading({
   title,
   description,
   children,
 }: {
-  title: string;
-  description: string;
-  children?: React.ReactNode;
+  title: string
+  description: string
+  children?: React.ReactNode
 }) {
   return (
     <section className="py-14 border-b border-main bg-white">
@@ -19,5 +19,5 @@ export default function Heading({
         {children}
       </div>
     </section>
-  );
+  )
 }
