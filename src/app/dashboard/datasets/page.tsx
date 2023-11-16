@@ -33,13 +33,9 @@ export default async function DatasetsPage() {
 
   return (
     <main>
-      <Heading
-        title="Datasets"
-        description="Find all you chat conversations..."
-      >
+      <Heading title="Datasets" description="Find all your dataset...">
         <Button variant="default">Create Dataset</Button>
       </Heading>
-
       {/* Datasets */}
       <section className="container mt-10">
         <h2 className="mb-5 text-lg font-medium">Your chatbots</h2>

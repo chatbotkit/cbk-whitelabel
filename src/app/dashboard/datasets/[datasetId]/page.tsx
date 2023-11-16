@@ -41,7 +41,6 @@ export default async function Page({
       <Heading title={dataset.name} description={dataset.description}>
         <AddRecordDialog datasetId={params.datasetId} />
       </Heading>
-
       {/* Records */}
       <section className="container mt-10">
         <h2 className="mb-5 text-lg font-medium">Dataset Records</h2>

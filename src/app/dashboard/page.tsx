@@ -37,7 +37,7 @@ export default async function DashboardPage() {
     <main>
       <Heading
         title="Overview"
-        description="Find all your datasets, conversations and more..."
+        description="Find all your bots, datasets, and more..."
       >
         <div className="flex items-center space-x-2">
           <CreateChatbotDialog createChatbotAction={createChatbot} />

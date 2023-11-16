@@ -43,11 +43,8 @@ export default async function Page() {
 
   return (
     <main>
-      <Heading
-        title="Chatbots"
-        description="Find all you chat conversations..."
-      >
-        <Button variant="default">Create Conversation</Button>
+      <Heading title="Chatbots" description="Find all you chatbots...">
+        <Button variant="default">Create Chatbot</Button>
       </Heading>
       {/* Chatbots */}
       <section className="container mt-10">

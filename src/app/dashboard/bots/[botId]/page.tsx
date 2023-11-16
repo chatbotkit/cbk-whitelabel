@@ -1,23 +1,20 @@
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import { ArrowLeftIcon } from '@heroicons/react/20/solid'
 
 import { getUserAuth } from '@/lib/auth'
-import { Button } from '@/components/ui/Button'
 import ChatBox from '@/components/ChatBox'
-import { createChatbotSession } from '@/server-actions/chatbot-actions'
+import { ChatBotKit } from '@/lib/chatbotkit'
+import { Button } from '@/components/ui/Button'
 
 async function getChatbot(id: string) {
-  const { token } = await getUserAuth()
+  const { chatbotkitUserToken } = await getUserAuth()
 
-  const res = await fetch(`${process.env.CHATBOTKIT_API}/bot/${id}/fetch`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
+  if (!chatbotkitUserToken) {
+    return redirect('/')
+  }
 
-  const data = await res.json()
-
-  return data
+  return await new ChatBotKit({ secret: chatbotkitUserToken }).bot.fetch(id)
 }
 
 const tabs = ['playground', 'settings']
@@ -30,7 +27,7 @@ export default async function Page({
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
   const currentTab = searchParams?.tab || tabs[0]
-  const bot: BotType = await getChatbot(params.botId)
+  const bot = await getChatbot(params.botId)
 
   return (
     <main>
@@ -68,7 +65,6 @@ export default async function Page({
           ))}
         </div>
       </section>
-
       {/* Conversations */}
       <section className="container mt-10">
         {currentTab === 'playground' && (

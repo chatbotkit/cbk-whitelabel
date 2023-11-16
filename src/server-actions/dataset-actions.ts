@@ -1,68 +1,63 @@
 'use server'
 
 import { getUserAuth } from '@/lib/auth'
-import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { revalidatePath } from 'next/cache'
+
+import { ChatBotKit } from '@/lib/chatbotkit'
 
 export async function createDataset(formData: FormData) {
-  const { token } = await getUserAuth()
-  let datasetId
+  const { chatbotkitUserToken } = await getUserAuth()
+
+  if (!chatbotkitUserToken) {
+    return redirect('/')
+  }
+
   const name = formData.get('name')
   const description = formData.get('description')
 
   try {
-    const datasetRes = await fetch(
-      `${process.env.CHATBOTKIT_API}/dataset/create`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          name: name,
-          description: description,
-        }),
-      }
-    )
+    const dataset = await new ChatBotKit({
+      secret: chatbotkitUserToken,
+    }).dataset.create({
+      name: name as string,
+      description: description as string,
 
-    const datasetData = await datasetRes.json()
-    datasetId = datasetData.id
+      store: 'ada-loom',
+    })
+
+    redirect(`/dashboard/datasets/${dataset.id}`)
   } catch (error) {
     console.error(error)
+
     return {
       error: {
         message: 'Something went wrong. Please try again!',
       },
     }
   }
-
-  redirect(`/dashboard/datasets/${datasetId}`)
 }
 
 export async function createDatasetRecord(
   formData: FormData,
   datasetId: string
 ) {
-  const { token } = await getUserAuth()
+  const { chatbotkitUserToken } = await getUserAuth()
+
+  if (!chatbotkitUserToken) {
+    return redirect('/')
+  }
+
   const text = formData.get('text')
 
   try {
-    const datasetRes = await fetch(
-      `${process.env.CHATBOTKIT_API}/dataset/${datasetId}/record/create`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          text,
-        }),
-      }
-    )
+    const record = await new ChatBotKit({
+      secret: chatbotkitUserToken,
+    }).dataset.record.create(datasetId, {
+      text: text as string,
+    })
 
-    await datasetRes.json()
+    revalidatePath(`/dashboard/datasets/${datasetId}`)
   } catch (error) {
     console.error(error)
     return {
@@ -71,6 +66,4 @@ export async function createDatasetRecord(
       },
     }
   }
-
-  revalidatePath(`/dashboard/datasets/${datasetId}`)
 }
