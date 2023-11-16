@@ -1,6 +1,7 @@
-"use client";
+'use client'
 
-import { useState, FormEvent } from "react";
+import { toast } from 'sonner'
+import { useState } from 'react'
 
 import {
   Dialog,
@@ -9,23 +10,22 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/Dialog";
-import { Input } from "@/components/ui/Input";
-import { Textarea } from "@/components/ui/TextArea";
-import { buttonVariants } from "@/components/ui/Button";
-import { createDatasetAction } from "@/server-actions/dataset-actions";
-import { toast } from "sonner";
-import FormButton from "./ui/FormButton";
+} from '@/components/ui/Dialog'
+import { Input } from '@/components/ui/Input'
+import FormButton from '@/components/ui/FormButton'
+import { Textarea } from '@/components/ui/TextArea'
+import { buttonVariants } from '@/components/ui/Button'
+import { createDataset } from '@/server-actions/dataset-actions'
 
 export default function CreateDatasetDialog() {
   const [datasetState, setDatasetState] = useState({
-    name: "",
-    description: "",
-  });
+    name: '',
+    description: '',
+  })
 
   return (
     <Dialog>
-      <DialogTrigger className={buttonVariants({ variant: "outline" })}>
+      <DialogTrigger className={buttonVariants({ variant: 'outline' })}>
         Create Dataset
       </DialogTrigger>
       <DialogContent>
@@ -34,11 +34,11 @@ export default function CreateDatasetDialog() {
         </DialogHeader>
         <form
           action={async (formData) => {
-            const error = await createDatasetAction(formData);
+            const error = await createDataset(formData)
             if (error) {
-              toast.error("We couldn't create a dataset. Please try again!");
+              toast.error("We couldn't create a dataset. Please try again!")
             } else {
-              toast.success("You dataset is ready!");
+              toast.success('You dataset is ready!')
             }
           }}
           className="flex flex-col space-y-4"
@@ -78,7 +78,7 @@ export default function CreateDatasetDialog() {
             ></Textarea>
           </div>
           <div className="flex items-center justify-end space-x-3 pt-4">
-            <DialogClose className={buttonVariants({ variant: "outline" })}>
+            <DialogClose className={buttonVariants({ variant: 'outline' })}>
               Cancel
             </DialogClose>
             <FormButton
@@ -92,5 +92,5 @@ export default function CreateDatasetDialog() {
         </form>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

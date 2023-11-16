@@ -1,19 +1,19 @@
-import { getUserAuth } from "@/lib/auth";
-import AddRecordDialog from "@/components/AddRecordDialog";
+import { getUserAuth } from '@/lib/auth'
+import AddRecordDialog from '@/components/AddRecordDialog'
 
 type RecordType = {
-  id: string;
-  text: string;
-};
+  id: string
+  text: string
+}
 
 async function getDataset(id: string) {
-  const { token } = await getUserAuth();
+  const { token } = await getUserAuth()
   const res = await fetch(`${process.env.CHATBOTKIT_API}/dataset/${id}/fetch`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  });
-  const data = await res.json();
+  })
+  const data = await res.json()
 
   const recordsRes = await fetch(
     `${process.env.CHATBOTKIT_API}/dataset/${id}/record/list`,
@@ -22,18 +22,18 @@ async function getDataset(id: string) {
         Authorization: `Bearer ${token}`,
       },
     }
-  );
-  const recordsData = await recordsRes.json();
+  )
+  const recordsData = await recordsRes.json()
 
-  return { dataset: data, records: recordsData as RecordType[] };
+  return { dataset: data, records: recordsData as RecordType[] }
 }
 
-export default async function DatasetPage({
+export default async function Page({
   params,
 }: {
-  params: { datasetId: string };
+  params: { datasetId: string }
 }) {
-  const { dataset, records } = await getDataset(params.datasetId);
+  const { dataset, records } = await getDataset(params.datasetId)
 
   return (
     <main>
@@ -52,16 +52,12 @@ export default async function DatasetPage({
         <h2 className="mb-5 text-lg font-medium">Dataset Records</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
           {records.length ? (
-            <>
-              {records?.map(({ text, id }) => (
-                <div key={id}>{text}</div>
-              ))}
-            </>
+            <>{records?.map(({ text, id }) => <div key={id}>{text}</div>)}</>
           ) : (
-            "No records found"
+            'No records found'
           )}
         </div>
       </section>
     </main>
-  );
+  )
 }

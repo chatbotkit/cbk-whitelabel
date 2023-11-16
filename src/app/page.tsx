@@ -1,4 +1,4 @@
-import SiteNavbar from "@/components/SiteNavbar";
+import SiteNavbar from '@/components/SiteNavbar'
 
 export default async function HomePage() {
   return (
@@ -9,5 +9,5 @@ export default async function HomePage() {
         <p>Open-source white-label solution on top of ChatBotKit</p>
       </main>
     </>
-  );
+  )
 }

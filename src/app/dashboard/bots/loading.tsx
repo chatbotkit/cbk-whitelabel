@@ -1,6 +1,6 @@
-import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingSpinner from '@/components/LoadingSpinner'
 
-export default function LoadingBotsPage() {
+export default function Loading() {
   return (
     <main>
       <section className="py-14 border-b border-main bg-zinc-50">
@@ -20,5 +20,5 @@ export default function LoadingBotsPage() {
         </div>
       </section>
     </main>
-  );
+  )
 }

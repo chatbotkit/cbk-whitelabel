@@ -1,4 +1,4 @@
-import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 export default function DashboardLoadingPage() {
   return (
@@ -19,5 +19,5 @@ export default function DashboardLoadingPage() {
         </div>
       </section>
     </main>
-  );
+  )
 }

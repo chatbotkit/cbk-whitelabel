@@ -1,34 +1,44 @@
+import Link from 'next/link'
 import {
   ChatBubbleBottomCenterIcon,
   TrashIcon,
-} from "@heroicons/react/24/solid";
+} from '@heroicons/react/24/solid'
 
-import { getUserAuth } from "@/lib/auth";
+import { getUserAuth } from '@/lib/auth'
+import { ChatBotKit } from '@/lib/chatbotkit'
+import { Button } from '@/components/ui/Button'
 import {
   Card,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
-import Link from "next/link";
+} from '@/components/ui/Card'
 
-async function getChatbots() {
-  const { token } = await getUserAuth();
+async function getChatbots(): Promise<
+  {
+    id: string
+    name?: string
+    description?: string
+    backstory?: string
+    model?: string
+  }[]
+> {
+  let { chatbotkitUserToken } = await getUserAuth()
 
-  const res = await fetch(`${process.env.CHATBOTKIT_API}/bot/list`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  if (!chatbotkitUserToken) {
+    return []
+  }
 
-  const data = await res.json();
-  return data.items;
+  const { items } = await new ChatBotKit({
+    secret: chatbotkitUserToken,
+  }).bot.list()
+
+  return items
 }
 
-export default async function BotsPage() {
-  const bots: BotType[] = await getChatbots();
+export default async function Page() {
+  const bots = await getChatbots()
 
   return (
     <main>
@@ -40,10 +50,9 @@ export default async function BotsPage() {
               Find all you chat conversations...
             </p>
           </div>
-          <Button variant="default">Create Conversation</Button>
+          <Button variant="default">Create Chatbot</Button>
         </div>
       </section>
-
       {/* Chatbots */}
       <section className="container mt-10">
         <h2 className="mb-5 text-lg font-medium">Your chatbots</h2>
@@ -75,5 +84,5 @@ export default async function BotsPage() {
         </div>
       </section>
     </main>
-  );
+  )
 }

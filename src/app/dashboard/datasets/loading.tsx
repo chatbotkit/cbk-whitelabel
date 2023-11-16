@@ -1,4 +1,4 @@
-import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 export default function LoadingBotsPage() {
   return (
@@ -20,5 +20,5 @@ export default function LoadingBotsPage() {
         </div>
       </section>
     </main>
-  );
+  )
 }

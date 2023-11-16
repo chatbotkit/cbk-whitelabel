@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import { useState } from "react";
+import { useState } from 'react'
 
 import {
   Dialog,
@@ -9,29 +9,29 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/Dialog";
-import { Input } from "@/components/ui/Input";
-import { Textarea } from "@/components/ui/TextArea";
-import { Select } from "@/components/ui/Select";
-import { buttonVariants } from "@/components/ui/Button";
-import FormButton from "./ui/FormButton";
+} from '@/components/ui/Dialog'
+import { Input } from '@/components/ui/Input'
+import { Textarea } from '@/components/ui/TextArea'
+import { Select } from '@/components/ui/Select'
+import { buttonVariants } from '@/components/ui/Button'
+import FormButton from './ui/FormButton'
 
 export default function CreateChatbotDialog({
   createChatbotAction,
 }: {
-  createChatbotAction: any;
+  createChatbotAction: any
 }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
   const [botState, setBotState] = useState({
-    name: "",
-    backstory: "",
-    model: "gpt-3.5-turbo",
+    name: '',
+    backstory: '',
+    model: 'gpt-3.5-turbo',
     // datasetId: "",
-  });
+  })
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className={buttonVariants({ variant: "default" })}>
+      <DialogTrigger className={buttonVariants({ variant: 'default' })}>
         Create Chatbot
       </DialogTrigger>
       <DialogContent>
@@ -40,7 +40,7 @@ export default function CreateChatbotDialog({
         </DialogHeader>
         <form
           action={async (formData) => {
-            const error = await createChatbotAction(formData);
+            const error = await createChatbotAction(formData)
             if (error) {
             } else {
             }
@@ -96,7 +96,7 @@ export default function CreateChatbotDialog({
             ></Textarea>
           </div>
           <div className="flex items-center justify-end space-x-3 pt-4">
-            <DialogClose className={buttonVariants({ variant: "outline" })}>
+            <DialogClose className={buttonVariants({ variant: 'outline' })}>
               Cancel
             </DialogClose>
             <FormButton
@@ -110,5 +110,5 @@ export default function CreateChatbotDialog({
         </form>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

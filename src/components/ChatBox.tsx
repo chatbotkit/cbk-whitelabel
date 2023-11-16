@@ -1,13 +1,13 @@
-"use client";
+'use client'
 
-import { useConversationManager } from "@chatbotkit/react";
-import FormButton from "./ui/FormButton";
-import { Button } from "./ui/Button";
-import { PaperAirplaneIcon } from "@heroicons/react/20/solid";
-import { Slider } from "./ui/Slider";
-import { useState } from "react";
-import { createChatbotSessionAction } from "@/server-actions/chatbot-actions";
-import { toast } from "sonner";
+import { useConversationManager } from '@chatbotkit/react'
+import FormButton from './ui/FormButton'
+import { Button } from './ui/Button'
+import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
+import { Slider } from './ui/Slider'
+import { useState } from 'react'
+import { createChatbotSession } from '@/server-actions/chatbot-actions'
+import { toast } from 'sonner'
 
 export default function ChatBox() {
   const {
@@ -25,10 +25,10 @@ export default function ChatBox() {
     thinking,
 
     interact,
-  } = useConversationManager({ stream: true });
+  } = useConversationManager({ stream: true })
 
-  const [temp, setTemp] = useState<number>(0.7);
-  const [responseLength, setResponseLength] = useState<number>(256);
+  const [temp, setTemp] = useState<number>(0.7)
+  const [responseLength, setResponseLength] = useState<number>(256)
 
   return (
     <div>
@@ -36,19 +36,19 @@ export default function ChatBox() {
         <div className="grid grid-cols-4 gap-6">
           <form
             onSubmit={(e) => {
-              e.preventDefault();
-              interact();
+              e.preventDefault()
+              interact()
             }}
             className="border border-zinc-200 p-6 rounded-xl shadow-md col-span-3"
           >
             <div className="h-[25rem]">
               {messages.map(({ id, type, text }) => {
                 switch (type) {
-                  case "user":
-                    return <div key={id}>user: {text}</div>;
+                  case 'user':
+                    return <div key={id}>user: {text}</div>
 
-                  case "bot":
-                    return <div key={id}>bot: {text}</div>;
+                  case 'bot':
+                    return <div key={id}>bot: {text}</div>
                 }
               })}
               {thinking ? <div key="thinking">bot: thinking...</div> : null}
@@ -112,12 +112,12 @@ export default function ChatBox() {
         <form
           action={async () => {
             const { conversationId, token, error } =
-              await createChatbotSessionAction();
+              await createChatbotSession()
             if (error) {
-              toast.error(error.message);
+              toast.error(error.message)
             } else {
-              setConversationId(conversationId);
-              setToken(token);
+              setConversationId(conversationId)
+              setToken(token)
             }
           }}
         >
@@ -127,5 +127,5 @@ export default function ChatBox() {
         </form>
       )}
     </div>
-  );
+  )
 }

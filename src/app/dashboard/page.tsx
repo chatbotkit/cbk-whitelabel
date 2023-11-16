@@ -1,32 +1,36 @@
-import { CircleStackIcon } from "@heroicons/react/20/solid";
-import { getUserAuth } from "@/lib/auth";
+import { CircleStackIcon } from '@heroicons/react/20/solid'
 
+import { getUserAuth } from '@/lib/auth'
+import { ChatBotKit } from '@/lib/chatbotkit'
+import CreateChatbotDialog from '@/components/CreateChatbotDialog'
+import CreateDatasetDialog from '@/components/CreateDatasetDialog'
+import { createChatbot } from '@/server-actions/chatbot-actions'
 import {
   Card,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card";
-import CreateChatbotDialog from "@/components/CreateChatbotDialog";
-import CreateDatasetDialog from "@/components/CreateDatasetDialog";
-import { createChatbotAction } from "@/server-actions/chatbot-actions";
+} from '@/components/ui/Card'
 
-async function getChatbots() {
-  const { token } = await getUserAuth();
+async function getChatbots(): Promise<
+  { id: string; name?: string; description?: string }[]
+> {
+  let { chatbotkitUserToken } = await getUserAuth()
 
-  const res = await fetch(`${process.env.CHATBOTKIT_API}/bot/list`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  if (!chatbotkitUserToken) {
+    return []
+  }
 
-  const data = await res.json();
-  return data.items;
+  const { items } = await new ChatBotKit({
+    secret: chatbotkitUserToken,
+  }).bot.list()
+
+  return items
 }
 
 export default async function DashboardPage() {
-  const bots = await getChatbots();
+  const bots = await getChatbots()
 
   return (
     <main>
@@ -39,12 +43,11 @@ export default async function DashboardPage() {
             </p>
           </div>
           <div className="flex items-center space-x-2">
-            <CreateChatbotDialog createChatbotAction={createChatbotAction} />
+            <CreateChatbotDialog createChatbotAction={createChatbot} />
             <CreateDatasetDialog />
           </div>
         </div>
       </section>
-
       {/* Datasets */}
       <section className="container mt-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -95,5 +98,5 @@ export default async function DashboardPage() {
         </div>
       </section>
     </main>
-  );
+  )
 }

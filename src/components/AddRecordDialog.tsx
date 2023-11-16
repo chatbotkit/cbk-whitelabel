@@ -1,8 +1,8 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { toast } from "sonner";
-import { createDatasetRecord } from "@/server-actions/dataset-actions";
+import { useState } from 'react'
+import { toast } from 'sonner'
+import { createDatasetRecord } from '@/server-actions/dataset-actions'
 
 import {
   Dialog,
@@ -11,18 +11,18 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/Dialog";
-import { Textarea } from "@/components/ui/TextArea";
-import { buttonVariants } from "@/components/ui/Button";
-import FormButton from "@/components/ui/FormButton";
+} from '@/components/ui/Dialog'
+import { Textarea } from '@/components/ui/TextArea'
+import { buttonVariants } from '@/components/ui/Button'
+import FormButton from '@/components/ui/FormButton'
 
 export default function AddRecordDialog({ datasetId }: { datasetId: string }) {
-  const [text, setText] = useState<string>("");
-  const [open, setOpen] = useState<boolean>(false);
+  const [text, setText] = useState<string>('')
+  const [open, setOpen] = useState<boolean>(false)
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className={buttonVariants({ variant: "default" })}>
+      <DialogTrigger className={buttonVariants({ variant: 'default' })}>
         Add Record
       </DialogTrigger>
       <DialogContent>
@@ -31,13 +31,13 @@ export default function AddRecordDialog({ datasetId }: { datasetId: string }) {
         </DialogHeader>
         <form
           action={async (formData) => {
-            const error = await createDatasetRecord(formData, datasetId);
+            const error = await createDatasetRecord(formData, datasetId)
             if (error) {
-              toast.error("We couldn't create the record. Please try again!");
-              setOpen(false);
+              toast.error("We couldn't create the record. Please try again!")
+              setOpen(false)
             } else {
-              toast.success("You record was created!");
-              setOpen(false);
+              toast.success('You record was created!')
+              setOpen(false)
             }
           }}
           className="flex flex-col space-y-4"
@@ -56,7 +56,7 @@ export default function AddRecordDialog({ datasetId }: { datasetId: string }) {
             ></Textarea>
           </div>
           <div className="flex items-center justify-end space-x-3 pt-4">
-            <DialogClose className={buttonVariants({ variant: "outline" })}>
+            <DialogClose className={buttonVariants({ variant: 'outline' })}>
               Cancel
             </DialogClose>
             <FormButton
@@ -70,5 +70,5 @@ export default function AddRecordDialog({ datasetId }: { datasetId: string }) {
         </form>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

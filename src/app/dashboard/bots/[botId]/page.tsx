@@ -1,35 +1,36 @@
-import { getUserAuth } from "@/lib/auth";
-import { Button } from "@/components/ui/Button";
-import Link from "next/link";
-import { ArrowLeftIcon } from "@heroicons/react/20/solid";
-import ChatBox from "@/components/ChatBox";
-import { createChatbotSessionAction } from "@/server-actions/chatbot-actions";
+import Link from 'next/link'
+import { ArrowLeftIcon } from '@heroicons/react/20/solid'
+
+import { getUserAuth } from '@/lib/auth'
+import { Button } from '@/components/ui/Button'
+import ChatBox from '@/components/ChatBox'
+import { createChatbotSession } from '@/server-actions/chatbot-actions'
 
 async function getChatbot(id: string) {
-  const { token } = await getUserAuth();
+  const { token } = await getUserAuth()
 
   const res = await fetch(`${process.env.CHATBOTKIT_API}/bot/${id}/fetch`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  });
+  })
 
-  const data = await res.json();
+  const data = await res.json()
 
-  return data;
+  return data
 }
 
-const tabs = ["playground", "settings"];
+const tabs = ['playground', 'settings']
 
-export default async function BotPage({
+export default async function Page({
   params,
   searchParams,
 }: {
-  params: { botId: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
+  params: { botId: string }
+  searchParams?: { [key: string]: string | string[] | undefined }
 }) {
-  const currentTab = searchParams?.tab || tabs[0];
-  const bot: BotType = await getChatbot(params.botId);
+  const currentTab = searchParams?.tab || tabs[0]
+  const bot: BotType = await getChatbot(params.botId)
 
   return (
     <main>
@@ -54,8 +55,8 @@ export default async function BotPage({
                 href={`?tab=${item}`}
                 className={`${
                   currentTab === item
-                    ? ""
-                    : "opacity-50 hover:opacity-100 transition duration-150"
+                    ? ''
+                    : 'opacity-50 hover:opacity-100 transition duration-150'
                 } h-full text-sm flex items-center capitalize`}
               >
                 {item}
@@ -70,16 +71,16 @@ export default async function BotPage({
 
       {/* Conversations */}
       <section className="container mt-10">
-        {currentTab === "playground" && (
+        {currentTab === 'playground' && (
           <>
             <h2 className="mb-5 text-lg font-medium">Playground</h2>
             <ChatBox />
           </>
         )}
-        {currentTab === "settings" && (
+        {currentTab === 'settings' && (
           <h2 className="mb-5 text-lg font-medium">Settings</h2>
         )}
       </section>
     </main>
-  );
+  )
 }

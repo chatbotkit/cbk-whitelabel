@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import FormButton from "./ui/FormButton";
+import FormButton from '@/components/ui/FormButton'
 
 export default function GetCheckoutForm({
   createCheckoutSession,
@@ -9,8 +9,8 @@ export default function GetCheckoutForm({
   return (
     <form
       action={async () => {
-        const clientSecret = await createCheckoutSession();
-        setClientSecret(clientSecret);
+        const clientSecret = await createCheckoutSession()
+        setClientSecret(clientSecret)
       }}
     >
       <section className="grid grid-cols-3 gap-4">
@@ -38,5 +38,5 @@ export default function GetCheckoutForm({
         </div>
       </section>
     </form>
-  );
+  )
 }

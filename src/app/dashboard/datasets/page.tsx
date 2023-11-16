@@ -1,29 +1,34 @@
-import { getUserAuth } from "@/lib/auth";
+import Link from 'next/link'
+import { CircleStackIcon } from '@heroicons/react/20/solid'
+
+import { getUserAuth } from '@/lib/auth'
+import { ChatBotKit } from '@/lib/chatbotkit'
+import { Button } from '@/components/ui/Button'
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
-import Link from "next/link";
-import { CircleStackIcon } from "@heroicons/react/20/solid";
+} from '@/components/ui/Card'
 
-async function getChatbots() {
-  const { token } = await getUserAuth();
+async function getDatasets(): Promise<
+  { id: string; name?: string; description?: string }[]
+> {
+  const { chatbotkitUserToken } = await getUserAuth()
 
-  const res = await fetch(`${process.env.CHATBOTKIT_API}/dataset/list`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  if (!chatbotkitUserToken) {
+    return []
+  }
 
-  const data = await res.json();
-  return data.items;
+  const { items } = await new ChatBotKit({
+    secret: chatbotkitUserToken,
+  }).dataset.list()
+
+  return items
 }
 
 export default async function DatasetsPage() {
-  const datasets: BotType[] = await getChatbots();
+  const datasets = await getDatasets()
 
   return (
     <main>
@@ -38,7 +43,6 @@ export default async function DatasetsPage() {
           <Button variant="default">Create Dataset</Button>
         </div>
       </section>
-
       {/* Datasets */}
       <section className="container mt-10">
         <h2 className="mb-5 text-lg font-medium">Your chatbots</h2>
@@ -59,5 +63,5 @@ export default async function DatasetsPage() {
         </div>
       </section>
     </main>
-  );
+  )
 }

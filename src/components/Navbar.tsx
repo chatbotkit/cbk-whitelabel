@@ -1,19 +1,19 @@
-"use client";
+'use client'
 
-import Link from "next/link";
+import Link from 'next/link'
 
-import { UserButton } from "@clerk/nextjs";
-import { useParams, usePathname } from "next/navigation";
+import { UserButton } from '@clerk/nextjs'
+import { useParams, usePathname } from 'next/navigation'
 
 const tabs = [
-  { title: "Overview", href: "/dashboard" },
-  { title: "Chatbots", href: "/dashboard/bots" },
-  { title: "Datasets", href: "/dashboard/datasets" },
-];
+  { title: 'Overview', href: '/dashboard' },
+  { title: 'Chatbots', href: '/dashboard/bots' },
+  { title: 'Datasets', href: '/dashboard/datasets' },
+]
 
 export default function Navbar() {
-  const pathname = usePathname();
-  const params = useParams();
+  const pathname = usePathname()
+  const params = useParams()
 
   return (
     <nav className="fixed top-0 w-full left-0 bg-white z-[100] border-b border-main flex flex-col justify-between">
@@ -77,20 +77,20 @@ export default function Navbar() {
                   href={item.href}
                   className={`${
                     pathname === item.href ||
-                    (item.href === "/dashboard/bots" && params.botId) ||
-                    (item.href === "/dashboard/datasets" && params.datasetId)
-                      ? ""
-                      : "opacity-50 hover:opacity-100 transition duration-150"
+                    (item.href === '/dashboard/bots' && params.botId) ||
+                    (item.href === '/dashboard/datasets' && params.datasetId)
+                      ? ''
+                      : 'opacity-50 hover:opacity-100 transition duration-150'
                   } h-full text-sm flex items-center`}
                 >
                   {item.title}
                 </Link>
                 {pathname === item.href ||
-                (item.href === "/dashboard/bots" && params.botId) ||
-                (item.href === "/dashboard/datasets" && params.datasetId) ? (
+                (item.href === '/dashboard/bots' && params.botId) ||
+                (item.href === '/dashboard/datasets' && params.datasetId) ? (
                   <div className="absolute w-full bottom-0 bg-black h-[2px]" />
                 ) : (
-                  ""
+                  ''
                 )}
               </div>
             ))}
@@ -104,5 +104,5 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-  );
+  )
 }

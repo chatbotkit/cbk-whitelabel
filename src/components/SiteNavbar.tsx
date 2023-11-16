@@ -1,10 +1,10 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import { UserButton, useUser } from "@clerk/nextjs";
+import Link from 'next/link'
+import { UserButton, useUser } from '@clerk/nextjs'
 
 export default function SiteNavbar() {
-  const { isSignedIn } = useUser();
+  const { isSignedIn } = useUser()
 
   return (
     <nav className="fixed top-0 w-full left-0 bg-white z-[100] border-b border-main flex flex-col justify-between">
@@ -89,5 +89,5 @@ export default function SiteNavbar() {
         </div>
       </div>
     </nav>
-  );
+  )
 }

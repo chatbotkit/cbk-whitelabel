@@ -1,19 +1,30 @@
-import { auth } from "@clerk/nextjs";
-import { clerkClient } from "@clerk/nextjs/server";
+import { auth } from '@clerk/nextjs'
+import { redirect } from 'next/navigation'
+import { clerkClient } from '@clerk/nextjs/server'
 
 type UserAuthType = {
-  userId: string | null;
-  stripeCustomerId: string | null;
-  cbkUserId: string | null;
-  token: string | null;
-};
+  userId: string
+  stripeCustomerId?: string | null
+  chatbotkitUserId?: string | null
+  chatbotkitUserToken?: string | null
+}
 
 export async function getUserAuth(): Promise<UserAuthType> {
-  const { userId }: { userId: string | null } = auth();
-  const user = userId ? await clerkClient.users.getUser(userId) : null;
-  const cbkUserId = user?.privateMetadata.cbkId as string;
-  const stripeCustomerId = user?.privateMetadata.stripeCustomerId as string;
-  const token = user?.privateMetadata.token as string;
+  const { userId }: { userId: string | null } = auth()
 
-  return { userId, stripeCustomerId, cbkUserId, token };
+  if (!userId) {
+    return redirect('/')
+  }
+
+  const user = await clerkClient.users.getUser(userId)
+
+  if (!user) {
+    return redirect('/')
+  }
+
+  const stripeCustomerId = user.privateMetadata.stripeCustomerId as string
+  const chatbotkitUserId = user.privateMetadata.chatbotkitUserId as string
+  const chatbotkitUserToken = user.privateMetadata.chatbotkitUserToken as string
+
+  return { userId, stripeCustomerId, chatbotkitUserId, chatbotkitUserToken }
 }

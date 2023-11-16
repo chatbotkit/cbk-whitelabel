@@ -1,16 +1,16 @@
-import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
-import { type VariantProps } from "class-variance-authority";
+import * as React from 'react'
+import { useFormStatus } from 'react-dom'
+import { Slot } from '@radix-ui/react-slot'
+import { type VariantProps } from 'class-variance-authority'
 
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/Button";
-import { useFormStatus } from "react-dom";
+import { cn } from '@/lib/utils'
+import { buttonVariants } from '@/components/ui/Button'
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
-  pendingText: string | React.ReactNode;
+  asChild?: boolean
+  pendingText: string | React.ReactNode
 }
 
 const FormButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -26,8 +26,8 @@ const FormButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const { pending } = useFormStatus();
-    const Comp = asChild ? Slot : "button";
+    const { pending } = useFormStatus()
+    const Comp = asChild ? Slot : 'button'
 
     return (
       <Comp
@@ -38,9 +38,9 @@ const FormButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {pending ? pendingText : children}
       </Comp>
-    );
+    )
   }
-);
-FormButton.displayName = "FormButton";
+)
+FormButton.displayName = 'FormButton'
 
-export default FormButton;
+export default FormButton
