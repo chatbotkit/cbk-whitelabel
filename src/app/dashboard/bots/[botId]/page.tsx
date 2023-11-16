@@ -33,7 +33,7 @@ export default async function BotPage({
 
   return (
     <main>
-      <section className="pt-10 border-b border-main bg-zinc-50">
+      <section className="pt-10 border-b border-main bg-white">
         <div className="container flex flex-col gap-4 md:flex-row items-start md:items-center justify-between">
           <div>
             <Link

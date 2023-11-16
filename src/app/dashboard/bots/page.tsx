@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
+import Heading from "@/components/Heading";
 
 async function getChatbots() {
   const { token } = await getUserAuth();
@@ -32,17 +33,12 @@ export default async function BotsPage() {
 
   return (
     <main>
-      <section className="py-14 border-b border-main bg-zinc-50">
-        <div className="container flex flex-col gap-4 md:flex-row items-start md:items-center justify-between">
-          <div>
-            <h1 className="text-black text-2xl font-medium">Chatbots</h1>
-            <p className="text-zinc-500 text-sm">
-              Find all you chat conversations...
-            </p>
-          </div>
-          <Button variant="default">Create Conversation</Button>
-        </div>
-      </section>
+      <Heading
+        title="Chatbots"
+        description="Find all you chat conversations..."
+      >
+        <Button variant="default">Create Conversation</Button>
+      </Heading>
 
       {/* Chatbots */}
       <section className="container mt-10">

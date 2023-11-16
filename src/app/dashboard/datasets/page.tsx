@@ -8,6 +8,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { CircleStackIcon } from "@heroicons/react/20/solid";
+import Heading from "@/components/Heading";
 
 async function getChatbots() {
   const { token } = await getUserAuth();
@@ -27,17 +28,12 @@ export default async function DatasetsPage() {
 
   return (
     <main>
-      <section className="py-14 border-b border-main bg-zinc-50">
-        <div className="container flex flex-col gap-4 md:flex-row items-start md:items-center justify-between">
-          <div>
-            <h1 className="text-black text-2xl font-medium">Datasets</h1>
-            <p className="text-zinc-500 text-sm">
-              Find all you chat conversations...
-            </p>
-          </div>
-          <Button variant="default">Create Dataset</Button>
-        </div>
-      </section>
+      <Heading
+        title="Datasets"
+        description="Find all you chat conversations..."
+      >
+        <Button variant="default">Create Dataset</Button>
+      </Heading>
 
       {/* Datasets */}
       <section className="container mt-10">
