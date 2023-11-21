@@ -41,7 +41,6 @@ export default async function DashboardPage() {
       >
         <div className="flex items-center space-x-2">
           <CreateChatbotDialog createChatbotAction={createChatbot} />
-          <CreateDatasetDialog />
         </div>
       </Heading>
       {/* Datasets */}

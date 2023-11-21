@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation'
 import { ChatBotKit } from '@chatbotkit/sdk'
 
 export async function createChatbot(formData: FormData) {
-  const { token } = await getUserAuth()
+  const { chatbotkitUserToken } = await getUserAuth()
   let botId
   const name = formData.get('name')
   const backstory = formData.get('backstory')
@@ -17,7 +17,7 @@ export async function createChatbot(formData: FormData) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${chatbotkitUserToken}`,
       },
       body: JSON.stringify({
         name: name,
@@ -46,14 +46,14 @@ export async function createChatbot(formData: FormData) {
 }
 
 export async function deleteChatbot(id: string) {
-  const { token } = await getUserAuth()
+  const { chatbotkitUserToken } = await getUserAuth()
 
   try {
     await fetch(`${process.env.CHATBOTKIT_API}/bot/${id}/delete`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${chatbotkitUserToken}`,
       },
     })
   } catch (error) {
@@ -69,9 +69,9 @@ export async function deleteChatbot(id: string) {
 }
 
 export async function createChatbotSession() {
-  const { token } = await getUserAuth()
+  const { chatbotkitUserToken } = await getUserAuth()
   const cbk = new ChatBotKit({
-    secret: token!,
+    secret: chatbotkitUserToken!,
   })
 
   try {

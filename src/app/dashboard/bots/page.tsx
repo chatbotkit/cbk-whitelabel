@@ -15,6 +15,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/Card'
+import CreateChatbotDialog from '@/components/CreateChatbotDialog'
+import { createChatbot } from '@/server-actions/chatbot-actions'
 
 async function getChatbots(): Promise<
   {
@@ -44,7 +46,7 @@ export default async function Page() {
   return (
     <main>
       <Heading title="Chatbots" description="Find all you chatbots...">
-        <Button variant="default">Create Chatbot</Button>
+        <CreateChatbotDialog createChatbotAction={createChatbot}/>
       </Heading>
       {/* Chatbots */}
       <section className="container mt-10">

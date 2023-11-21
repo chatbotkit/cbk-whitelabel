@@ -8,7 +8,6 @@ import { useParams, usePathname } from 'next/navigation'
 const tabs = [
   { title: 'Overview', href: '/dashboard' },
   { title: 'Chatbots', href: '/dashboard/bots' },
-  { title: 'Datasets', href: '/dashboard/datasets' },
 ]
 
 export default function Navbar() {
