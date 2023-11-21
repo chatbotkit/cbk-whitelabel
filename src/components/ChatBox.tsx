@@ -9,7 +9,7 @@ import { useState } from 'react'
 import { createChatbotSession } from '@/server-actions/chatbot-actions'
 import { toast } from 'sonner'
 
-export default function ChatBox() {
+export default function ChatBox({ botId }: { botId: string }) {
   const {
     conversationId,
     setConversationId,
@@ -112,7 +112,7 @@ export default function ChatBox() {
         <form
           action={async () => {
             const { conversationId, token, error } =
-              await createChatbotSession()
+              await createChatbotSession(botId)
             if (error) {
               toast.error(error.message)
             } else {

@@ -75,6 +75,9 @@ export async function GET(req: NextRequest) {
       status: session.status,
     })
   } catch (err) {
+    if (process.env.DEBUG) {
+      console.error(err)
+    }
     return new Response('Something went wrong', {
       status: 500,
     })

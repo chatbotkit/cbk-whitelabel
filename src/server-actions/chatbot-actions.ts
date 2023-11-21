@@ -68,7 +68,7 @@ export async function deleteChatbot(id: string) {
   revalidatePath('/dashboard/bots')
 }
 
-export async function createChatbotSession() {
+export async function createChatbotSession(botId: string) {
   const { chatbotkitUserToken } = await getUserAuth()
   const cbk = new ChatBotKit({
     secret: chatbotkitUserToken!,
@@ -76,6 +76,8 @@ export async function createChatbotSession() {
 
   try {
     // Step 1: create a conversation
+    // const { conversationId, token } = await cbk.conversation.create({botId:botId})
+
     const { id: conversationId } = await cbk.conversation.create({})
 
     // Step 2: create an authentication token for this conversation
@@ -83,9 +85,11 @@ export async function createChatbotSession() {
       durationInSeconds: 3600, // 1 hour
     })
 
-    // Step 3: pass the conversationId and the token to the front-end
+    // Step 2: pass the conversationId and the token to the front-end
     return { conversationId, token }
   } catch (error) {
+    console.log(error)
+
     return {
       error: {
         message: 'Something went wrong. Please try again!',

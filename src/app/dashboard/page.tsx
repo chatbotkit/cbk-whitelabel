@@ -5,7 +5,7 @@ import Heading from '@/components/Heading'
 import { ChatBotKit } from '@/lib/chatbotkit'
 import { createChatbot } from '@/server-actions/chatbot-actions'
 import CreateChatbotDialog from '@/components/CreateChatbotDialog'
-import CreateDatasetDialog from '@/components/CreateDatasetDialog'
+
 import {
   Card,
   CardDescription,

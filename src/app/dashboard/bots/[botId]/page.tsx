@@ -1,11 +1,9 @@
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { ArrowLeftIcon } from '@heroicons/react/20/solid'
 
 import { getUserAuth } from '@/lib/auth'
 import ChatBox from '@/components/ChatBox'
 import { ChatBotKit } from '@/lib/chatbotkit'
-import { Button } from '@/components/ui/Button'
 
 async function getChatbot(id: string) {
   const { chatbotkitUserToken } = await getUserAuth()
@@ -31,19 +29,12 @@ export default async function Page({
 
   return (
     <main>
-      <section className="pt-10 border-b border-main bg-white">
+      <section className="pt-[3.3rem] border-b border-main bg-white">
         <div className="container flex flex-col gap-4 md:flex-row items-start md:items-center justify-between">
           <div>
-            <Link
-              className="flex items-center mb-4 text-sm hover:opacity-50 transition duration-150"
-              href="/dashboard/bots"
-            >
-              <ArrowLeftIcon className="h-3 w-3 mr-2" /> Back
-            </Link>
             <h1 className="text-black text-2xl font-medium">{bot.name}</h1>
             <p className="text-zinc-500 text-sm">{bot.backstory}</p>
           </div>
-          <Button variant="default">Start a Conversation</Button>
         </div>
         <div className="flex items-center h-full space-x-6 container mt-6">
           {tabs.map((item) => (
@@ -70,7 +61,7 @@ export default async function Page({
         {currentTab === 'playground' && (
           <>
             <h2 className="mb-5 text-lg font-medium">Playground</h2>
-            <ChatBox />
+            <ChatBox botId={bot.id} />
           </>
         )}
         {currentTab === 'settings' && (

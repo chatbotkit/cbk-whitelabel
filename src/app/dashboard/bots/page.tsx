@@ -1,13 +1,11 @@
 import Link from 'next/link'
 import {
   ChatBubbleBottomCenterIcon,
-  TrashIcon,
 } from '@heroicons/react/24/solid'
 
 import { getUserAuth } from '@/lib/auth'
 import Heading from '@/components/Heading'
 import { ChatBotKit } from '@/lib/chatbotkit'
-import { Button } from '@/components/ui/Button'
 import {
   Card,
   CardDescription,
@@ -69,9 +67,6 @@ export default async function Page() {
                       {item.model}
                     </p>
                   </div>
-                  <Button size="icon" className="h-9 w-9" variant="outline">
-                    <TrashIcon className="h-4 w-4" />
-                  </Button>
                 </CardFooter>
               </Card>
             </Link>
