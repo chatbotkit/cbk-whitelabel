@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { getUserAuth } from '@/lib/auth'
 import ChatBox from '@/components/ChatBox'
 import { ChatBotKit } from '@/lib/chatbotkit'
+import SourcesUpload from '@/components/SourcesUpload'
 
 async function getChatbot(id: string) {
   const { chatbotkitUserToken } = await getUserAuth()
@@ -15,7 +16,7 @@ async function getChatbot(id: string) {
   return await new ChatBotKit({ secret: chatbotkitUserToken }).bot.fetch(id)
 }
 
-const tabs = ['playground', 'settings']
+const tabs = ['playground', 'sources']
 
 export default async function Page({
   params,
@@ -64,8 +65,11 @@ export default async function Page({
             <ChatBox botId={bot.id} />
           </>
         )}
-        {currentTab === 'settings' && (
-          <h2 className="mb-5 text-lg font-medium">Settings</h2>
+        {currentTab === 'sources' && (
+          <div>
+            <h2 className="mb-5 text-lg font-medium">Sources</h2>
+            <SourcesUpload />
+          </div>
         )}
       </section>
     </main>

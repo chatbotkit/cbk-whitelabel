@@ -1,11 +1,9 @@
-import { CircleStackIcon } from '@heroicons/react/20/solid'
+import Link from 'next/link'
+import { ChatBubbleBottomCenterIcon } from '@heroicons/react/24/solid'
 
 import { getUserAuth } from '@/lib/auth'
 import Heading from '@/components/Heading'
 import { ChatBotKit } from '@/lib/chatbotkit'
-import { createChatbot } from '@/server-actions/chatbot-actions'
-import CreateChatbotDialog from '@/components/CreateChatbotDialog'
-
 import {
   Card,
   CardDescription,
@@ -13,9 +11,17 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/Card'
+import CreateChatbotDialog from '@/components/CreateChatbotDialog'
+import { createChatbot } from '@/server-actions/chatbot-actions'
 
 async function getChatbots(): Promise<
-  { id: string; name?: string; description?: string }[]
+  {
+    id: string
+    name?: string
+    description?: string
+    backstory?: string
+    model?: string
+  }[]
 > {
   let { chatbotkitUserToken } = await getUserAuth()
 
@@ -36,60 +42,36 @@ export default async function DashboardPage() {
   return (
     <main>
       <Heading
-        title="Overview"
-        description="Find all your bots, datasets, and more..."
+        title="Chatbots"
+        description="Find all you chatbots and create new ones..."
       >
-        <div className="flex items-center space-x-2">
-          <CreateChatbotDialog createChatbotAction={createChatbot} />
-        </div>
+        <CreateChatbotDialog createChatbotAction={createChatbot} />
       </Heading>
-      {/* Datasets */}
+      {/* Chatbots */}
       <section className="container mt-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Card className="col-span-2">
-            <CardHeader>
-              <div className="border border-main h-8 w-8 rounded-md flex items-center justify-center shadow mb-2">
-                <CircleStackIcon className="h-4 w-4" />
-              </div>
-              <CardTitle>Dataset title</CardTitle>
-              <CardDescription>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi,
-                repellat!
-              </CardDescription>
-            </CardHeader>
-          </Card>
-          <div className="col-span-1 grid grid-rows-2 gap-4">
-            <Card>
-              <CardHeader>
-                <div className="border border-main h-8 w-8 rounded-md flex items-center justify-center shadow mb-2">
-                  <CircleStackIcon className="h-4 w-4" />
-                </div>
-                <CardTitle>Dataset title</CardTitle>
-                <CardDescription>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Modi, repellat!
-                </CardDescription>
-              </CardHeader>
-              <CardFooter>
-                <p>Card Footer</p>
-              </CardFooter>
-            </Card>
-            <Card>
-              <CardHeader>
-                <div className="border border-main h-8 w-8 rounded-md flex items-center justify-center shadow mb-2">
-                  <CircleStackIcon className="h-4 w-4" />
-                </div>
-                <CardTitle>Dataset title</CardTitle>
-                <CardDescription>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Modi, repellat!
-                </CardDescription>
-              </CardHeader>
-              <CardFooter>
-                <p>Card Footer</p>
-              </CardFooter>
-            </Card>
-          </div>
+        <h2 className="mb-5 text-lg font-medium">Recently created</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
+          {bots?.map((item) => (
+            <Link key={item.id} href={`/dashboard/bots/${item.id}`}>
+              <Card className="h-full">
+                <CardHeader>
+                  <div className="border border-main h-8 w-8 rounded-md flex items-center justify-center shadow mb-2">
+                    <ChatBubbleBottomCenterIcon className="h-4 w-4" />
+                  </div>
+                  <CardTitle>{item.name}</CardTitle>
+                  <CardDescription>{item.backstory}</CardDescription>
+                </CardHeader>
+                <CardFooter className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <p className="text-sm mr-2">Model:</p>
+                    <p className="text-xs bg-white shadow border border-zinc-300 rounded-md px-3 py-1">
+                      {item.model}
+                    </p>
+                  </div>
+                </CardFooter>
+              </Card>
+            </Link>
+          ))}
         </div>
       </section>
     </main>
