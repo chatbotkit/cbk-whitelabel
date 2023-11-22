@@ -6,9 +6,9 @@ export default function DashboardLoadingPage() {
       <section className="py-14 border-b border-main bg-white">
         <div className="container flex flex-col gap-4 md:flex-row md:items-center justify-between">
           <div>
-            <h1 className="text-black text-2xl font-medium">Overview</h1>
+            <h1 className="text-black text-2xl font-medium">Chatbots</h1>
             <p className="text-zinc-500 text-sm">
-              Find all your datasets, conversations and more...
+              Find all you chatbots and create new ones...
             </p>
           </div>
         </div>
