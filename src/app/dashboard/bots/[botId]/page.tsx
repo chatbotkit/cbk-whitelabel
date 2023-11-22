@@ -66,10 +66,10 @@ export default async function Page({
           </>
         )}
         {currentTab === 'sources' && (
-          <div>
+          <>
             <h2 className="mb-5 text-lg font-medium">Sources</h2>
             <SourcesUpload />
-          </div>
+          </>
         )}
       </section>
     </main>

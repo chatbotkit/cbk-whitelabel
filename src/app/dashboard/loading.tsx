@@ -3,7 +3,7 @@ import LoadingSpinner from '@/components/LoadingSpinner'
 export default function DashboardLoadingPage() {
   return (
     <main>
-      <section className="py-14 border-b border-main bg-zinc-50">
+      <section className="py-14 border-b border-main bg-white">
         <div className="container flex flex-col gap-4 md:flex-row md:items-center justify-between">
           <div>
             <h1 className="text-black text-2xl font-medium">Overview</h1>
