@@ -13,9 +13,12 @@ import { TrashIcon } from '@heroicons/react/24/solid'
 import FormButton from './ui/FormButton'
 import { createDataset } from '@/server-actions/dataset-actions'
 import { toast } from 'sonner'
+import { useParams } from 'next/navigation'
 
 export default function UploadInput() {
   const [file, setFile] = useState<File>()
+  const params: { botId: string } = useParams()
+
   const { getRootProps, getInputProps, isDragActive, isDragReject } =
     useDropzone({
       maxFiles: 1,
@@ -33,7 +36,7 @@ export default function UploadInput() {
   return (
     <form
       action={async (formData) => {
-        const error = await createDataset(formData)
+        const error = await createDataset(formData, params.botId)
         if (error) {
           toast.error('Something went wrong')
         } else {
