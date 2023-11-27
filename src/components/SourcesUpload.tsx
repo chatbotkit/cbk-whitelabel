@@ -33,6 +33,9 @@ export default function UploadInput({ files }: { files: FileType[] }) {
       },
       onDrop: async (acceptedFiles: File[]) => {
         setFile(acceptedFiles[0])
+
+        let formData = new FormData()
+        formData.append('file', acceptedFiles[0], acceptedFiles[0].name)
       },
     })
 
@@ -48,7 +51,7 @@ export default function UploadInput({ files }: { files: FileType[] }) {
           }
         }}
       >
-        <input
+        {/* <input
           type="file"
           name="file"
           onChange={(e) => {
@@ -57,9 +60,9 @@ export default function UploadInput({ files }: { files: FileType[] }) {
               setFile(file)
             }
           }}
-        />
+        /> */}
         <div className="grid grid-cols-4 gap-6">
-          {/* <div
+          <div
             className={`relative h-[16rem] w-full cursor-pointer overflow-hidden rounded-lg transition duration-150 bg-white col-span-3`}
           >
             <div
@@ -67,10 +70,9 @@ export default function UploadInput({ files }: { files: FileType[] }) {
               className="group relative z-30 h-full w-full overflow-hidden"
             >
               <input
-                {...getInputProps()}
+                {...getInputProps({ name: 'file' })}
                 name="file"
                 maxLength={1}
-                type="file"
               />
               {isDragActive && (
                 <div className="flex h-full w-full cursor-pointer flex-col items-center justify-center space-y-2 rounded-lg border border-dashed border-indigo-500 text-center">
@@ -100,7 +102,7 @@ export default function UploadInput({ files }: { files: FileType[] }) {
                 </div>
               )}
             </div>
-          </div> */}
+          </div>
 
           <div className="bg-white rounded-lg border border-zinc-200 p-6 flex flex-col">
             {file ? (

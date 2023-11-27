@@ -34,7 +34,9 @@ export default function ChatBox({
     endpoint: '/api/complete',
     backstory: backstory,
     datasetId: datasetId,
-    // model: `${model}/temprature=${temp}`,
+    model: {
+      name: model,
+    },
   })
 
   useEffect(() => {

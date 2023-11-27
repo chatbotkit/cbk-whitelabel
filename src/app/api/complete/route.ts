@@ -7,13 +7,12 @@ export const runtime = 'edge'
 export async function POST(req: Request) {
   const { messages, backstory, datasetId, model } = await req.json()
   const { chatbotkitUserToken } = await getUserAuth()
-  console.log(datasetId)
 
   const cbk = new ChatBotKit({
     secret: chatbotkitUserToken!,
   })
   const complete = cbk.conversation.complete(null, {
-    // model: model,
+    model,
     messages,
     backstory,
     datasetId,
