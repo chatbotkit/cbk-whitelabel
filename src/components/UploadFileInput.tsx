@@ -22,7 +22,7 @@ type FileType = {
   updatedAt: Date
 }
 
-export default function UploadInput({ files }: { files: FileType[] }) {
+export default function UploadFileInput({ files }: { files: FileType[] }) {
   const [file, setFile] = useState<File>()
   const params: { botId: string } = useParams()
 

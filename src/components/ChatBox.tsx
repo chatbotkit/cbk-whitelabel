@@ -32,9 +32,12 @@ export default function ChatBox({
 
   const { thinking, text, setText, messages, submit } = useConversationManager({
     endpoint: '/api/complete',
-    backstory: backstory,
-    datasetId: datasetId,
-    model: `${model}/temperature=${1}`,
+    backstory,
+    datasetId,
+    model: {
+      name: model,
+      temperature: 0.7,
+    },
   })
 
   useEffect(() => {
