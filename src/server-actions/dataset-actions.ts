@@ -61,6 +61,27 @@ export async function createDataset(formData: FormData, botId: string) {
   }
 }
 
+export async function deleteFile(id: string) {
+  const { chatbotkitUserToken } = await getUserAuth()
+  const cbk = new ChatBotKit({
+    secret: chatbotkitUserToken!,
+  })
+
+  if (!chatbotkitUserToken) {
+    return redirect('/')
+  }
+  try {
+    await cbk.file.delete(id)
+  } catch (error) {
+    return {
+      error: {
+        message: 'Something went wrong. Please try again!',
+      },
+    }
+  }
+  revalidatePath('/dashboard/bots')
+}
+
 export async function createDatasetRecord(
   formData: FormData,
   datasetId: string

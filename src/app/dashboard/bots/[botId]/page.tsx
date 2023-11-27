@@ -10,20 +10,19 @@ async function getChatbot(id: string) {
   const { chatbotkitUserToken } = await getUserAuth()
   const cbk = new ChatBotKit({ secret: chatbotkitUserToken! })
   let bot
-  let dataset
+  let files
   if (!chatbotkitUserToken) {
     return redirect('/')
   }
 
   try {
     bot = await cbk.bot.fetch(id)
-
-    // dataset = await cbk.dataset.fetch(bot.datasetId as string)
+    files = await cbk.dataset.file.list(bot.datasetId as string, {})
   } catch (error) {
     redirect('/dashboard')
   }
 
-  return { bot, dataset }
+  return { bot, files: files.items }
 }
 
 const tabs = ['playground', 'sources']
@@ -36,8 +35,7 @@ export default async function Page({
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
   const currentTab = searchParams?.tab || tabs[0]
-  const { bot, dataset } = await getChatbot(params.botId)
-  // console.log(dataset)
+  const { bot, files } = await getChatbot(params.botId)
 
   return (
     <main>
@@ -84,7 +82,7 @@ export default async function Page({
         {currentTab === 'sources' && (
           <>
             <h2 className="mb-5 text-lg font-medium">Sources</h2>
-            <SourcesUpload />
+            <SourcesUpload files={files} />
           </>
         )}
       </section>
