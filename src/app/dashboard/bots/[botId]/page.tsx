@@ -17,9 +17,10 @@ async function getChatbot(id: string) {
 
   try {
     bot = await cbk.bot.fetch(id)
-    dataset = await cbk.dataset.fetch(bot.datasetId as string)
+
+    // dataset = await cbk.dataset.fetch(bot.datasetId as string)
   } catch (error) {
-    return redirect('/dashboard')
+    redirect('/dashboard')
   }
 
   return { bot, dataset }
@@ -73,6 +74,7 @@ export default async function Page({
           <>
             <h2 className="mb-5 text-lg font-medium">Playground</h2>
             <ChatBox
+              botName={bot.name as string}
               model={bot.model as string}
               datasetId={bot.datasetId as string}
               backstory={bot.backstory as string}

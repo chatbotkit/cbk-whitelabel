@@ -15,12 +15,10 @@ import { Textarea } from '@/components/ui/TextArea'
 import { Select } from '@/components/ui/Select'
 import { buttonVariants } from '@/components/ui/Button'
 import FormButton from './ui/FormButton'
+import { createChatbot } from '@/server-actions/chatbot-actions'
+import { toast } from 'sonner'
 
-export default function CreateChatbotDialog({
-  createChatbotAction,
-}: {
-  createChatbotAction: any
-}) {
+export default function CreateChatbotDialog() {
   const [open, setOpen] = useState(false)
   const [botState, setBotState] = useState({
     name: '',
@@ -40,9 +38,9 @@ export default function CreateChatbotDialog({
         </DialogHeader>
         <form
           action={async (formData) => {
-            const error = await createChatbotAction(formData)
+            const error = await createChatbot(formData)
             if (error) {
-            } else {
+              toast.error(error.error.message)
             }
           }}
           className="flex flex-col space-y-4"
@@ -73,6 +71,7 @@ export default function CreateChatbotDialog({
             >
               <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
               <option value="gpt-4">gpt-4</option>
+              <option value="gpt-4-1106-preview">gpt-4-1106-preview</option>
             </Select>
           </div>
 

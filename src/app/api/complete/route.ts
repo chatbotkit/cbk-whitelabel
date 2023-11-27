@@ -11,13 +11,12 @@ export async function POST(req: Request) {
   const cbk = new ChatBotKit({
     secret: chatbotkitUserToken!,
   })
+  const complete = cbk.conversation.complete(null, {
+    messages,
+    backstory,
+    datasetId,
+    // model: model,
+  })
 
-  return stream(
-    cbk.conversation.complete(null, {
-      messages,
-      backstory,
-      datasetId,
-      model: model,
-    })
-  )
+  return stream(complete)
 }
