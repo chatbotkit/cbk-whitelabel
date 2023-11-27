@@ -42,14 +42,19 @@ export default function ChatbotCard({ bot }: { bot: BotType }) {
           </p>
         </div>
         <form
-          action={async () => {
+          action={async (e) => {
             const error = await deleteChatbot(bot.id)
             if (error) {
               toast.error('Something went wrong')
+            } else {
+              toast.success('Chatbot successfully deleted!')
             }
           }}
         >
           <FormButton
+            onClick={(e) => {
+              e.stopPropagation()
+            }}
             pendingText={<LoadingSpinner />}
             size="icon"
             variant="outline"

@@ -1,8 +1,6 @@
-import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
 import { getUserAuth } from '@/lib/auth'
-import ChatBox from '@/components/ChatBox'
 import { ChatBotKit } from '@/lib/chatbotkit'
 import Chatbot from '@/components/Chatbot'
 
@@ -30,16 +28,7 @@ async function getChatbot(id: string) {
   return { bot, files: files.items }
 }
 
-const tabs = ['playground', 'sources']
-
-export default async function Page({
-  params,
-  searchParams,
-}: {
-  params: { botId: string }
-  searchParams?: { [key: string]: string | string[] | undefined }
-}) {
-  const currentTab = searchParams?.tab || tabs[0]
+export default async function Page({ params }: { params: { botId: string } }) {
   const { bot, files } = await getChatbot(params.botId)
 
   return (

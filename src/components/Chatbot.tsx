@@ -39,7 +39,7 @@ export default function Chatbot({ bot, files }: any) {
           ))}
         </div>
       </section>
-      {/* Conversations */}
+
       <section className="container mt-10">
         {currentTab === 'playground' && (
           <>

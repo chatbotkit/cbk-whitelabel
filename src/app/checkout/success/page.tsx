@@ -1,5 +1,9 @@
 'use client'
 
+import LoadingSpinner from '@/components/LoadingSpinner'
+import { buttonVariants } from '@/components/ui/Button'
+import { cn } from '@/lib/utils'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
@@ -39,13 +43,23 @@ export default function Page() {
   if (status === 'complete') {
     return (
       <section className="flex flex-col items-center justify-center h-screen max-w-3xl mx-auto">
-        <p className="text-center">
-          We appreciate your business!If you have any questions, please email
-          <a href="mailto:orders@example.com">orders@example.com</a>.
-        </p>
+        <p className="text-center">Thank you fot subscribing!</p>
+        <Link
+          className={cn(buttonVariants({ variant: 'default' }), 'mt-2')}
+          href="/dashboard"
+        >
+          Go to dashboard
+        </Link>
       </section>
     )
   }
 
-  return null
+  return (
+    <section className="flex flex-col items-center justify-center h-screen max-w-3xl mx-auto">
+      <LoadingSpinner />
+      <p className="text-center mt-4">
+        We are setting up your account. <br /> Plase, don't refresh this page
+      </p>
+    </section>
+  )
 }

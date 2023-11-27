@@ -51,7 +51,9 @@ export async function deleteChatbot(id: string) {
     const bot = await cbk.bot.fetch(id)
 
     await cbk.bot.delete(id)
-    await cbk.dataset.delete(bot.datasetId as string)
+    if (bot.datasetId) {
+      await cbk.dataset.delete(bot.datasetId as string)
+    }
   } catch (error) {
     console.error(error)
     return {
