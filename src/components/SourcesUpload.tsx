@@ -1,6 +1,10 @@
 'use client'
 
-import { ArrowDownIcon, CloudIcon } from '@heroicons/react/24/outline'
+import {
+  ArrowDownIcon,
+  CloudIcon,
+  DocumentIcon,
+} from '@heroicons/react/24/outline'
 import { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Button } from './ui/Button'
@@ -28,14 +32,9 @@ export default function UploadInput({ files }: { files: FileType[] }) {
       accept: {
         'application/pdf': ['.pdf'],
         'text/plain': ['.txt'],
-        'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-          ['.docx'],
       },
       onDrop: async (acceptedFiles: File[]) => {
         setFile(acceptedFiles[0])
-
-        let formData = new FormData()
-        formData.append('file', acceptedFiles[0], acceptedFiles[0].name)
       },
     })
 
@@ -43,24 +42,19 @@ export default function UploadInput({ files }: { files: FileType[] }) {
     <>
       <form
         action={async (formData) => {
+          // Note: There is a bug in Chromium Browsers with React Dropzone
+          // https://github.com/react-dropzone/react-dropzone/issues/1290
+          formData.delete('file')
+          formData.append('file', file as File, file?.name)
           const error = await addFile(formData, params.botId)
           if (error) {
             toast.error('Something went wrong')
           } else {
             toast.success('You source is ready!')
+            setFile(undefined)
           }
         }}
       >
-        {/* <input
-          type="file"
-          name="file"
-          onChange={(e) => {
-            if (e.target.files && e.target.files.length > 0) {
-              const file = e.target.files[0]
-              setFile(file)
-            }
-          }}
-        /> */}
         <div className="grid grid-cols-4 gap-6">
           <div
             className={`relative h-[16rem] w-full cursor-pointer overflow-hidden rounded-lg transition duration-150 bg-white col-span-3`}
@@ -69,11 +63,7 @@ export default function UploadInput({ files }: { files: FileType[] }) {
               {...getRootProps()}
               className="group relative z-30 h-full w-full overflow-hidden"
             >
-              <input
-                {...getInputProps({ name: 'file' })}
-                name="file"
-                maxLength={1}
-              />
+              <input {...getInputProps()} name="file" />
               {isDragActive && (
                 <div className="flex h-full w-full cursor-pointer flex-col items-center justify-center space-y-2 rounded-lg border border-dashed border-indigo-500 text-center">
                   <ArrowDownIcon className="text-secondary h-8 w-8" />
@@ -137,6 +127,7 @@ export default function UploadInput({ files }: { files: FileType[] }) {
                 size="icon"
                 variant="outline"
                 className="min-w-[2.5rem]"
+                type="button"
               >
                 <TrashIcon className="h-4 w-4 text-rose-500" />
               </Button>
@@ -144,8 +135,8 @@ export default function UploadInput({ files }: { files: FileType[] }) {
           </div>
         </div>
       </form>
-      <div className="mt-5 flex flex-col gap-3">
-        {files.map((item) => (
+      <div className="mt-5 flex flex-col gap-3 mb-10">
+        {files?.map((item) => (
           <form
             key={item.id}
             className="bg-white border border-zinc-200 pl-6 pr-2 py-2 flex items-center justify-between rounded-lg"
@@ -156,11 +147,15 @@ export default function UploadInput({ files }: { files: FileType[] }) {
               }
             }}
           >
-            <p>{item.name}</p>
+            <div className="flex items-center space-x-2">
+              <DocumentIcon className="h-4 w-4" />
+              <p className="text-sm">{item.name}</p>
+            </div>
             <FormButton
               pendingText={<LoadingSpinner />}
               size="icon"
               variant="outline"
+              className="h-8 w-8"
             >
               <TrashIcon className="h-4 w-4 text-rose-500" />
             </FormButton>

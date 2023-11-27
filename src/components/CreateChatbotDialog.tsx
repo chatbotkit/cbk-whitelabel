@@ -71,7 +71,7 @@ export default function CreateChatbotDialog() {
             >
               <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
               <option value="gpt-4">gpt-4</option>
-              <option value="gpt-4-1106-preview">gpt-4-1106-preview</option>
+              <option value="gpt-4-turbo">gpt-4-turbo</option>
             </Select>
           </div>
 

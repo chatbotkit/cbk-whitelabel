@@ -51,6 +51,9 @@ export async function addFile(formData: FormData, botId: string) {
     await cbk.dataset.file.attach(dataset.id, createdFile.id, {
       type: 'source',
     })
+
+    // 4. Sync with the datasete
+    await cbk.dataset.file.sync(dataset.id, createdFile.id, {})
   } catch (error) {
     console.error(error)
 

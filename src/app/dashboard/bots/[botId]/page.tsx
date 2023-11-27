@@ -17,9 +17,14 @@ async function getChatbot(id: string) {
 
   try {
     bot = await cbk.bot.fetch(id)
-    files = await cbk.dataset.file.list(bot.datasetId as string, {})
   } catch (error) {
     redirect('/dashboard')
+  }
+
+  try {
+    files = await cbk.dataset.file.list(bot.datasetId as string, {})
+  } catch (error) {
+    files = []
   }
 
   return { bot, files: files.items }
