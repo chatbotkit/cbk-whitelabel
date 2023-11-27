@@ -1,17 +1,12 @@
 'use client'
 
-import {
-  ArrowDownIcon,
-  CloudIcon,
-  DocumentArrowUpIcon,
-} from '@heroicons/react/24/outline'
+import { ArrowDownIcon, CloudIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Button } from './ui/Button'
-import { XMarkIcon } from '@heroicons/react/20/solid'
 import { TrashIcon } from '@heroicons/react/24/solid'
 import FormButton from './ui/FormButton'
-import { createDataset, deleteFile } from '@/server-actions/dataset-actions'
+import { addFile, deleteFile } from '@/server-actions/dataset-actions'
 import { toast } from 'sonner'
 import { useParams } from 'next/navigation'
 import LoadingSpinner from './LoadingSpinner'
@@ -45,7 +40,7 @@ export default function UploadInput({ files }: { files: FileType[] }) {
     <>
       <form
         action={async (formData) => {
-          const error = await createDataset(formData, params.botId)
+          const error = await addFile(formData, params.botId)
           if (error) {
             toast.error('Something went wrong')
           } else {
@@ -53,15 +48,30 @@ export default function UploadInput({ files }: { files: FileType[] }) {
           }
         }}
       >
+        <input
+          type="file"
+          name="file"
+          onChange={(e) => {
+            if (e.target.files && e.target.files.length > 0) {
+              const file = e.target.files[0]
+              setFile(file)
+            }
+          }}
+        />
         <div className="grid grid-cols-4 gap-6">
-          <div
+          {/* <div
             className={`relative h-[16rem] w-full cursor-pointer overflow-hidden rounded-lg transition duration-150 bg-white col-span-3`}
           >
             <div
               {...getRootProps()}
               className="group relative z-30 h-full w-full overflow-hidden"
             >
-              <input name="file" {...getInputProps()} maxLength={1} />
+              <input
+                {...getInputProps()}
+                name="file"
+                maxLength={1}
+                type="file"
+              />
               {isDragActive && (
                 <div className="flex h-full w-full cursor-pointer flex-col items-center justify-center space-y-2 rounded-lg border border-dashed border-indigo-500 text-center">
                   <ArrowDownIcon className="text-secondary h-8 w-8" />
@@ -90,7 +100,7 @@ export default function UploadInput({ files }: { files: FileType[] }) {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
 
           <div className="bg-white rounded-lg border border-zinc-200 p-6 flex flex-col">
             {file ? (

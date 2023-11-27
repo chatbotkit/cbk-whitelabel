@@ -6,11 +6,12 @@ import { revalidatePath } from 'next/cache'
 
 import { ChatBotKit } from '@/lib/chatbotkit'
 
-export async function createDataset(formData: FormData, botId: string) {
+export async function addFile(formData: FormData, botId: string) {
   const { chatbotkitUserToken } = await getUserAuth()
 
   const file = formData.get('file') as File
   const buffer = await file?.arrayBuffer()
+  console.log(file)
 
   const cbk = new ChatBotKit({
     secret: chatbotkitUserToken!,
@@ -59,6 +60,7 @@ export async function createDataset(formData: FormData, botId: string) {
       },
     }
   }
+  revalidatePath('/dashboard/bots')
 }
 
 export async function deleteFile(id: string) {
@@ -80,34 +82,4 @@ export async function deleteFile(id: string) {
     }
   }
   revalidatePath('/dashboard/bots')
-}
-
-export async function createDatasetRecord(
-  formData: FormData,
-  datasetId: string
-) {
-  const { chatbotkitUserToken } = await getUserAuth()
-
-  if (!chatbotkitUserToken) {
-    return redirect('/')
-  }
-
-  const text = formData.get('text')
-
-  try {
-    const record = await new ChatBotKit({
-      secret: chatbotkitUserToken,
-    }).dataset.record.create(datasetId, {
-      text: text as string,
-    })
-
-    revalidatePath(`/dashboard/datasets/${datasetId}`)
-  } catch (error) {
-    console.error(error)
-    return {
-      error: {
-        message: 'Something went wrong. Please try again!',
-      },
-    }
-  }
 }

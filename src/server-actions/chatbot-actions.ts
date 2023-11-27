@@ -60,3 +60,29 @@ export async function deleteChatbot(id: string) {
 
   revalidatePath('/dashboard')
 }
+
+export async function updateChatbotBackstory(
+  formData: FormData,
+  botId: string
+) {
+  const { chatbotkitUserToken } = await getUserAuth()
+  const backstory = formData.get('backstory')
+
+  const cbk = new ChatBotKit({
+    secret: chatbotkitUserToken!,
+  })
+
+  try {
+    await cbk.bot.update(botId, {
+      backstory: backstory as string,
+    })
+  } catch (error) {
+    console.error(error)
+    return {
+      error: {
+        message: 'Something went wrong. Please try again!',
+      },
+    }
+  }
+  revalidatePath(`/dashboard/bots`)
+}

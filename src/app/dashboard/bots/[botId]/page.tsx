@@ -43,7 +43,9 @@ export default async function Page({
         <div className="container flex flex-col gap-4 md:flex-row items-start md:items-center justify-between">
           <div>
             <h1 className="text-black text-2xl font-medium">{bot.name}</h1>
-            <p className="text-zinc-500 text-sm">{bot.backstory}</p>
+            <p className="text-zinc-500 text-sm line-clamp-1 max-w-[20rem] overflow-ellipsis">
+              {bot.backstory}
+            </p>
           </div>
         </div>
         <div className="flex items-center h-full space-x-6 container mt-6">

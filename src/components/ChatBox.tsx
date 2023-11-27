@@ -8,6 +8,10 @@ import { Slider } from './ui/Slider'
 import { useUser } from '@clerk/nextjs'
 import Image from 'next/image'
 import { SparklesIcon } from '@heroicons/react/24/solid'
+import { Textarea } from './ui/TextArea'
+import FormButton from './ui/FormButton'
+import { useParams } from 'next/navigation'
+import { updateChatbotBackstory } from '@/server-actions/chatbot-actions'
 
 export default function ChatBox({
   datasetId,
@@ -20,10 +24,11 @@ export default function ChatBox({
   botName: string
   model: string
 }) {
+  const params: { botId: string } = useParams()
+
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const { user } = useUser()
-  const [temp, setTemp] = useState<number>(0.7)
-  const [responseLength, setResponseLength] = useState<number>(256)
+  const [updatedBackstory, setUpdatedBackstory] = useState(backstory)
 
   const { thinking, text, setText, messages, submit } = useConversationManager({
     endpoint: '/api/complete',
@@ -37,13 +42,13 @@ export default function ChatBox({
   }, [messages])
 
   return (
-    <div className="grid grid-cols-4 gap-6">
+    <div className="grid grid-cols-3 gap-6">
       <form
         onSubmit={(e) => {
           e.preventDefault()
           submit()
         }}
-        className="border bg-white border-zinc-200 rounded-xl shadow-md col-span-3"
+        className="border bg-white border-zinc-200 rounded-xl shadow-md col-span-2"
       >
         <div className="h-[25rem] overflow-y-scroll">
           {messages.map(({ id, type, text }) => {
@@ -129,41 +134,33 @@ export default function ChatBox({
           </Button>
         </div>
       </form>
-      <div className="w-full">
-        <h2>Parameters</h2>
-        <p className="text-zinc-500 text-sm">Adjust your model paramaters</p>
-        <div className="h-[1px] w-full bg-zinc-200 my-6" />
-        <div className="flex flex-col gap-4">
-          <div className="mb-2">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="text-sm">Temperature</h2>
-              <div className="text-sm border border-zinc-200 px-2 py-1 rounded-md shadow">
-                {temp}
-              </div>
-            </div>
-            <Slider
-              max={2}
-              defaultValue={[temp]}
-              step={0.01}
-              onValueChange={(value) => setTemp(value[0])}
-            />
-          </div>
-          <div>
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="text-sm">Response Length</h2>
-              <div className="text-sm border border-zinc-200 px-2 py-1 rounded-md shadow">
-                {responseLength}
-              </div>
-            </div>
-            <Slider
-              max={2048}
-              defaultValue={[responseLength]}
-              step={1}
-              onValueChange={(value) => setResponseLength(value[0])}
-            />
-          </div>
-        </div>
-      </div>
+      <form
+        action={async (formData) => {
+          const error = await updateChatbotBackstory(formData, params.botId)
+        }}
+        className="w-full"
+      >
+        <h2>Backstory</h2>
+        <p className="text-zinc-500 text-sm mb-3">
+          Adjust your model backstory
+        </p>
+        <Textarea
+          id="backstory"
+          name="backstory"
+          className="mb-4"
+          rows={10}
+          placeholder="Give your chatbot personality and style.."
+          value={updatedBackstory}
+          onChange={(e) => setUpdatedBackstory(e.target.value)}
+        ></Textarea>
+        <FormButton
+          pendingText="Processing"
+          className="w-full"
+          disabled={backstory === updatedBackstory}
+        >
+          Update Backstory
+        </FormButton>
+      </form>
     </div>
   )
 }
