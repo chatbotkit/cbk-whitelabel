@@ -6,33 +6,31 @@ import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
 import { Slider } from './ui/Slider'
 import { useState } from 'react'
 
-export default function ChatBox({ botId }: { botId: string }) {
-  const {
-    conversationId,
-    setConversationId,
-
-    token,
-    setToken,
-
-    text,
-    setText,
-
-    messages,
-
-    thinking,
-
-    interact,
-  } = useConversationManager({ stream: true })
-
+export default function ChatBox({
+  datasetId,
+  backstory,
+  model,
+}: {
+  datasetId: string
+  backstory: string
+  model: string
+}) {
   const [temp, setTemp] = useState<number>(0.7)
   const [responseLength, setResponseLength] = useState<number>(256)
+
+  const { thinking, text, setText, messages, submit } = useConversationManager({
+    endpoint: '/api/complete',
+    backstory: backstory,
+    datasetId: datasetId,
+    model: `${model}/temprature=${temp}`,
+  })
 
   return (
     <div className="grid grid-cols-4 gap-6">
       <form
         onSubmit={(e) => {
           e.preventDefault()
-          interact()
+          submit()
         }}
         className="border bg-white border-zinc-200 p-6 rounded-xl shadow-md col-span-3"
       >

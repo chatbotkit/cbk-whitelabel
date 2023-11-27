@@ -1,13 +1,23 @@
-import { getUserAuth } from '@/lib/auth'
 import { ChatBotKit } from '@chatbotkit/sdk'
+import { stream } from '@chatbotkit/next/edge'
+import { getUserAuth } from '@/lib/auth'
+
+export const runtime = 'edge'
 
 export async function POST(req: Request) {
+  const { messages, backstory, datasetId, model } = await req.json()
   const { chatbotkitUserToken } = await getUserAuth()
+
   const cbk = new ChatBotKit({
     secret: chatbotkitUserToken!,
   })
-  const messages: any = []
-  const data = cbk.conversation.complete(null, { model: 'gpt-4', messages })
 
-  return Response.json({ message: 'hello' })
+  return stream(
+    cbk.conversation.complete(null, {
+      messages,
+      backstory,
+      datasetId,
+      model: model,
+    })
+  )
 }

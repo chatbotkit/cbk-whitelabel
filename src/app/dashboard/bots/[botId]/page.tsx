@@ -8,12 +8,21 @@ import SourcesUpload from '@/components/SourcesUpload'
 
 async function getChatbot(id: string) {
   const { chatbotkitUserToken } = await getUserAuth()
-
+  const cbk = new ChatBotKit({ secret: chatbotkitUserToken! })
+  let bot
+  let dataset
   if (!chatbotkitUserToken) {
     return redirect('/')
   }
 
-  return await new ChatBotKit({ secret: chatbotkitUserToken }).bot.fetch(id)
+  try {
+    bot = await cbk.bot.fetch(id)
+    dataset = await cbk.dataset.fetch(bot.datasetId as string)
+  } catch (error) {
+    return redirect('/dashboard')
+  }
+
+  return { bot, dataset }
 }
 
 const tabs = ['playground', 'sources']
@@ -26,7 +35,8 @@ export default async function Page({
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
   const currentTab = searchParams?.tab || tabs[0]
-  const bot = await getChatbot(params.botId)
+  const { bot, dataset } = await getChatbot(params.botId)
+  // console.log(dataset)
 
   return (
     <main>
@@ -62,7 +72,11 @@ export default async function Page({
         {currentTab === 'playground' && (
           <>
             <h2 className="mb-5 text-lg font-medium">Playground</h2>
-            <ChatBox botId={bot.id} />
+            <ChatBox
+              model={bot.model as string}
+              datasetId={bot.datasetId as string}
+              backstory={bot.backstory as string}
+            />
           </>
         )}
         {currentTab === 'sources' && (
