@@ -1,10 +1,10 @@
 'use client'
+import { useEffect, useRef, useState } from 'react'
 
 import { useConversationManager } from '@chatbotkit/react'
 import { Button } from './ui/Button'
 import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
 import { Slider } from './ui/Slider'
-import { useState } from 'react'
 import { useUser } from '@clerk/nextjs'
 import Image from 'next/image'
 import { SparklesIcon } from '@heroicons/react/24/solid'
@@ -20,6 +20,7 @@ export default function ChatBox({
   botName: string
   model: string
 }) {
+  const messagesEndRef = useRef<HTMLDivElement>(null)
   const { user } = useUser()
   const [temp, setTemp] = useState<number>(0.7)
   const [responseLength, setResponseLength] = useState<number>(256)
@@ -30,6 +31,10 @@ export default function ChatBox({
     datasetId: datasetId,
     // model: `${model}/temprature=${temp}`,
   })
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages])
 
   return (
     <div className="grid grid-cols-4 gap-6">
@@ -105,6 +110,7 @@ export default function ChatBox({
               </p>
             </div>
           ) : null}
+          <div ref={messagesEndRef} />
         </div>
         <div className="relative p-6">
           <input
