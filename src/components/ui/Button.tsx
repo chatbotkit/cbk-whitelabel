@@ -3,7 +3,7 @@ import { VariantProps, cva } from 'class-variance-authority'
 
 import { cn } from '@/lib/utils'
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   // General style that aply to all the button variants
   'inline-flex items-center justify-center rounded-lg text-xs font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 whitespace-nowrap',
   {
@@ -32,7 +32,7 @@ interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {}
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, size, variant, ...props }, ref) => {
     return (
       <button
@@ -45,5 +45,3 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 )
 
 Button.displayName = 'Button'
-
-export { Button, buttonVariants }

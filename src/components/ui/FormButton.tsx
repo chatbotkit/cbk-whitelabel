@@ -13,7 +13,7 @@ export interface ButtonProps
   pendingText: string | React.ReactNode
 }
 
-const FormButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const FormButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       className,
@@ -43,5 +43,3 @@ const FormButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
 )
 
 FormButton.displayName = 'FormButton'
-
-export default FormButton

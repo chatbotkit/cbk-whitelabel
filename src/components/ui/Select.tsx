@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {}
 
-const Select = forwardRef<HTMLSelectElement, SelectProps>(
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ({ className, ...props }, ref) => {
     return (
       <select
@@ -20,5 +20,3 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
 )
 
 Select.displayName = 'Select'
-
-export { Select }
