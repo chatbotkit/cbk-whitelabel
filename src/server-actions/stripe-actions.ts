@@ -7,6 +7,7 @@ const YOUR_DOMAIN = process.env.DOMAIN_URL || 'http://localhost:3000'
 
 export async function createCheckoutSession() {
   const { userId }: { userId: string | null } = auth()
+
   const user = await clerkClient.users.getUser(userId as string)
 
   let stripeCustomer
@@ -16,7 +17,11 @@ export async function createCheckoutSession() {
       name: user.firstName as string,
       email: user.emailAddresses[0].emailAddress,
     })
-    if (!stripeCustomer) return
+
+    if (!stripeCustomer) {
+      return
+    }
+
     await clerkClient.users.updateUser(userId as string, {
       privateMetadata: {
         stripeCustomerId: stripeCustomer.id,

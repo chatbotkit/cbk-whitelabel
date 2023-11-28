@@ -1,12 +1,14 @@
 'use server'
 
-import { getUserAuth } from '@/lib/auth'
-import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { ChatBotKit } from '@chatbotkit/sdk'
+import { revalidatePath } from 'next/cache'
+
+import { getUserAuth } from '@/lib/auth'
+import { ChatBotKit } from '@/lib/chatbotkit'
 
 export async function createChatbot(formData: FormData) {
   let botId
+
   const { chatbotkitUserToken } = await getUserAuth()
 
   const cbk = new ChatBotKit({
@@ -25,11 +27,13 @@ export async function createChatbot(formData: FormData) {
       // description: description,
       // datasetId: datasetId,
       // skillsetId: skillsetId,
-      // visibility: "public",
+      // visibility: 'public',
     })
+
     botId = bot.id
   } catch (error) {
     console.error(error)
+
     return {
       error: {
         message: 'Something went wrong. Please try again!',
@@ -56,6 +60,7 @@ export async function deleteChatbot(id: string) {
     }
   } catch (error) {
     console.error(error)
+
     return {
       error: {
         message: 'Something went wrong. Please try again!',
@@ -83,11 +88,13 @@ export async function updateChatbotBackstory(
     })
   } catch (error) {
     console.error(error)
+
     return {
       error: {
         message: 'Something went wrong. Please try again!',
       },
     }
   }
+
   revalidatePath(`/dashboard/bots`)
 }

@@ -11,7 +11,6 @@ export async function addFile(formData: FormData, botId: string) {
 
   const file = formData.get('file') as File
   const buffer = await file?.arrayBuffer()
-  console.log(file)
 
   const cbk = new ChatBotKit({
     secret: chatbotkitUserToken!,
@@ -23,8 +22,9 @@ export async function addFile(formData: FormData, botId: string) {
 
   try {
     let dataset
+
     const bot = await cbk.bot.fetch(botId)
-    // Check if dataset already exists
+
     if (!bot.datasetId) {
       dataset = await cbk.dataset.create({
         name: file.name,
@@ -41,12 +41,14 @@ export async function addFile(formData: FormData, botId: string) {
     const createdFile = await cbk.file.create({
       name: file.name,
     })
+
     // 2. Upload the specified file
     await cbk.file.upload(createdFile.id, {
       data: buffer,
       name: file.name,
       type: file.type,
     })
+
     // 3. Attach file to the dataset
     await cbk.dataset.file.attach(dataset.id, createdFile.id, {
       type: 'source',
@@ -63,11 +65,13 @@ export async function addFile(formData: FormData, botId: string) {
       },
     }
   }
+
   revalidatePath('/dashboard/bots')
 }
 
 export async function deleteFile(id: string) {
   const { chatbotkitUserToken } = await getUserAuth()
+
   const cbk = new ChatBotKit({
     secret: chatbotkitUserToken!,
   })
@@ -75,14 +79,18 @@ export async function deleteFile(id: string) {
   if (!chatbotkitUserToken) {
     return redirect('/')
   }
+
   try {
     await cbk.file.delete(id)
   } catch (error) {
+    console.error(error)
+
     return {
       error: {
         message: 'Something went wrong. Please try again!',
       },
     }
   }
+
   revalidatePath('/dashboard/bots')
 }
