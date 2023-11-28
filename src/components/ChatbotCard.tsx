@@ -44,6 +44,7 @@ export default function ChatbotCard({ bot }: { bot: BotType }) {
         <form
           action={async (e) => {
             const error = await deleteChatbot(bot.id)
+
             if (error) {
               toast.error('Something went wrong')
             } else {
