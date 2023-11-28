@@ -10,7 +10,7 @@ import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
 
 import { Button } from './ui/Button'
 import { Slider } from './ui/Slider'
-import { Textarea } from './ui/Textrea'
+import { Textarea } from './ui/Textarea'
 import { FormButton } from './ui/FormButton'
 import { updateChatbotBackstory } from '@/server-actions/chatbot-actions'
 
