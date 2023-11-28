@@ -1,11 +1,11 @@
 'use client'
 
-import LoadingSpinner from '@/components/LoadingSpinner'
-import { buttonVariants } from '@/components/ui/Button'
-import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
+import { buttonVariants } from '@/components/ui/Button'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 export default function Page() {
   const router = useRouter()
@@ -58,7 +58,8 @@ export default function Page() {
     <section className="flex flex-col items-center justify-center h-screen max-w-3xl mx-auto">
       <LoadingSpinner />
       <p className="text-center mt-4">
-        We are setting up your account. <br /> Plase, don't refresh this page
+        We are setting up your account. <br /> Plase, don&apos;t refresh this
+        page
       </p>
     </section>
   )

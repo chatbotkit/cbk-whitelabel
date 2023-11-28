@@ -1,13 +1,13 @@
 import { Metadata } from 'next'
-import Navbar from '@/components/Navbar'
 import Toast from '@/components/Toast'
+import Navbar from '@/components/Navbar'
 
 export const metadata: Metadata = {
   title: 'CBK Whitelabel',
 }
 
 export default function DashboardLayout({
-  children, // will be a page or nested layout
+  children,
 }: {
   children: React.ReactNode
 }) {

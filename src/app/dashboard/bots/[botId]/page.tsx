@@ -1,14 +1,17 @@
 import { redirect } from 'next/navigation'
 
 import { getUserAuth } from '@/lib/auth'
-import { ChatBotKit } from '@/lib/chatbotkit'
 import Chatbot from '@/components/Chatbot'
+import { ChatBotKit } from '@/lib/chatbotkit'
 
 async function getChatbot(id: string) {
   const { chatbotkitUserToken } = await getUserAuth()
+
   const cbk = new ChatBotKit({ secret: chatbotkitUserToken! })
+
   let bot
   let files
+
   if (!chatbotkitUserToken) {
     return redirect('/')
   }

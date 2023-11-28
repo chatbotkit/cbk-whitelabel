@@ -7,9 +7,7 @@ export default function Loading() {
         <div className="container flex flex-col gap-4 md:flex-row items-start md:items-center justify-between">
           <div>
             <h1 className="text-black text-2xl font-medium">Chatbots</h1>
-            <p className="text-zinc-500 text-sm">
-              Find all you chat conversations...
-            </p>
+            <p className="text-zinc-500 text-sm">Find all you chatbots...</p>
           </div>
         </div>
       </section>

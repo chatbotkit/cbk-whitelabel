@@ -1,8 +1,8 @@
 import { type NextRequest } from 'next/server'
+import { auth, clerkClient } from '@clerk/nextjs'
 
 import stripe from '@/lib/stripe'
 import chatbotkit from '@/lib/chatbotkit'
-import { auth, clerkClient } from '@clerk/nextjs'
 
 export async function GET(req: NextRequest) {
   try {
@@ -78,6 +78,7 @@ export async function GET(req: NextRequest) {
     if (process.env.DEBUG) {
       console.error(err)
     }
+
     return new Response('Something went wrong', {
       status: 500,
     })

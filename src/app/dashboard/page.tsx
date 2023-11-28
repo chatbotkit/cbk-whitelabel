@@ -1,11 +1,11 @@
 import Link from 'next/link'
 
-import { ChatBotKit } from '@/lib/chatbotkit'
 import { getUserAuth } from '@/lib/auth'
+import { ChatBotKit } from '@/lib/chatbotkit'
 
 import Heading from '@/components/Heading'
-import CreateChatbotDialog from '@/components/CreateChatbotDialog'
 import ChatbotCard from '@/components/ChatbotCard'
+import CreateChatbotDialog from '@/components/CreateChatbotDialog'
 
 async function getChatbots(): Promise<
   {

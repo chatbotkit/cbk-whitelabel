@@ -6,7 +6,7 @@ export default function Loading() {
     <main>
       <Heading
         title="Chatbots"
-        description="Find all you chat conversations..."
+        description="Find all you chatbots..."
       ></Heading>
       <section className="container mt-10">
         <h2 className="mb-5 text-lg font-medium">Your chatbots</h2>
