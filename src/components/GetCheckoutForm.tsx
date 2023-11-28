@@ -1,6 +1,6 @@
 'use client'
 
-import FormButton from '@/components/ui/FormButton'
+import { FormButton } from '@/components/ui/FormButton'
 
 export default function GetCheckoutForm({
   createCheckoutSession,

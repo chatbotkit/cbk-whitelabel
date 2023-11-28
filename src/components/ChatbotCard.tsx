@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from '@/components/ui/Card'
 import { deleteChatbot } from '@/server-actions/chatbot-actions'
-import FormButton from './ui/FormButton'
+import { FormButton } from './ui/FormButton'
 import LoadingSpinner from './LoadingSpinner'
 
 type BotType = {

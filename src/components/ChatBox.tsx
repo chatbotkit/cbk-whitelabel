@@ -11,7 +11,7 @@ import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
 import { Button } from './ui/Button'
 import { Slider } from './ui/Slider'
 import { Textarea } from './ui/Textrea'
-import FormButton from './ui/FormButton'
+import { FormButton } from './ui/FormButton'
 import { updateChatbotBackstory } from '@/server-actions/chatbot-actions'
 
 export default function ChatBox({

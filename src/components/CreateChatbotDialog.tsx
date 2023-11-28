@@ -1,5 +1,6 @@
 'use client'
 
+import { toast } from 'sonner'
 import { useState } from 'react'
 
 import {
@@ -10,21 +11,20 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/Dialog'
+import { FormButton } from './ui/FormButton'
 import { Input } from '@/components/ui/Input'
-import { Textarea } from '@/components/ui/Textrea'
 import { Select } from '@/components/ui/Select'
+import { Textarea } from '@/components/ui/Textrea'
 import { buttonVariants } from '@/components/ui/Button'
-import FormButton from './ui/FormButton'
 import { createChatbot } from '@/server-actions/chatbot-actions'
-import { toast } from 'sonner'
 
 export default function CreateChatbotDialog() {
   const [open, setOpen] = useState(false)
+
   const [botState, setBotState] = useState({
     name: '',
     backstory: '',
     model: 'gpt-3.5-turbo',
-    // datasetId: "",
   })
 
   return (
@@ -39,6 +39,7 @@ export default function CreateChatbotDialog() {
         <form
           action={async (formData) => {
             const error = await createChatbot(formData)
+
             if (error) {
               toast.error(error.error.message)
             }
