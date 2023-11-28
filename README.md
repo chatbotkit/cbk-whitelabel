@@ -1,12 +1,24 @@
 # ChatBotKit White-label
 
-Welcome to the ChatBotKit White-label Solution! This powerful tool enables you to build and deploy custom conversational AI SaaS solutions quickly and efficiently.
+Welcome to the ChatBotKit White-label Solution! This powerful tool enables you to build and deploy custom conversational AI SaaS solutions quickly and efficiently. This is the ideal for entrepreneurs, agencies, and developers who want to build their own AI platform.
+
+## Benefits
+
+- **Customizable:** The ChatBotKit White-label Solution is fully customizable. You can easily change the look and feel of the application to match your brand.
+- **Scalable:** The ChatBotKit White-label Solution is built on top of the ChatBotKit Node SDKs. This means that you can easily scale your application to meet the needs of your business.
+- **Secure:** The ChatBotKit White-label Solution is built on top of the Clerk authentication platform. This means that your application is secure and protected from malicious attacks.
+- **Affordable:** The ChatBotKit White-label Solution is built on top of the Stripe payment platform. This means that you can easily monetize your application and generate revenue.
+- **Open-source:** The ChatBotKit White-label Solution is open-source. This means that you can easily customize the application to meet the needs of your business.
+- **Easy to use:** The ChatBotKit White-label Solution is easy to use. This means that you can easily customize the application to meet the needs of your business.
+- **Easy to deploy:** The ChatBotKit White-label Solution is easy to deploy. This means that you can easily customize the application to meet the needs of your business.
+- **Easy to maintain:** The ChatBotKit White-label Solution is easy to maintain. This means that you can easily customize the application to meet the needs of your business.
+- **Easy to update:** The ChatBotKit White-label Solution is easy to update. This means that you can easily customize the application to meet the needs of your business.
+- **Easy to integrate:** The ChatBotKit White-label Solution is easy to integrate. This means that you can easily customize the application to meet the needs of your business.
 
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
-- Node.js (version 12 or later)
 - A package manager (npm, yarn, pnpm, or bun)
 - A [ChatBotKit](https://chatbotkit.com) account
 - A [Clerk](https://clerk.dev/) account
