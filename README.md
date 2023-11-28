@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ChatBotKit White-label
+
+Welcome to the ChatBotKit White-label Solution! This powerful tool enables you to build and deploy custom conversational AI SaaS solutions quickly and efficiently.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- Node.js (version 12 or later)
+- A package manager (npm, yarn, pnpm, or bun)
+- A [ChatBotKit](https://chatbotkit.com) account
+- A [Clerk](https://clerk.dev/) account
+- A [Stripe](https://stripe.com/) account
 
 ## Getting Started
 
-First, run the development server:
+### Setting Up Your Development Environment
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clone the Repository:**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   git clone https://github.com/chatbotkit/cbk-white-label
+   cd cbk-white-label
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. **Install Dependencies:**
+   Choose your preferred package manager and run the following command:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   npm install
+   # or
+   yarn
+   # or
+   pnpm install
+   # or
+   bun install
+   ```
 
-## Learn More
+3. **Create a `.env.local` File:**
+   Create a `.env.local` file in the root directory of your project. This file will contain your ChatBotKit, Clerk and Stripe credentials.
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   cp .env.example .env.local
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Run the Development Server:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   # or
+   bun dev
+   ```
 
-## Deploy on Vercel
+5. **Access the App:**
+   Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6. **Begin Editing:**
+   Start customizing your chatbot by editing `app/page.tsx`. Changes will auto-update as you modify the file.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Documentation and Learning Resources
+
+- **Explore ChatBotKit:** Learn more about the capabilities and features of ChatBotKit at [ChatBotKit.com](https://chatbotkit.com).
+- **SDK Documentation:** Utilize the [ChatBotKit Node SDKs](https://github.com/chatbotkit/node-sdk) for advanced customization and functionality.
+
+## Deploying Your Chatbot
+
+**Deploy with Vercel:**
+For a hassle-free deployment, use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js). It’s optimized for Next.js applications like this one.
+
+- **Deployment Guide:** For detailed instructions, see the [Next.js Deployment Documentation](https://nextjs.org/docs/deployment).
+
+## Support and Contributions
+
+For support, feature requests, or contributions, please visit [our GitHub repository](https://github.com/chatbotkit/cbk-white-label).
