@@ -91,4 +91,4 @@ For support, feature requests, or contributions, please visit [our GitHub reposi
 
 If you need help with ChatBotKit, please visit [ChatBotKit](https://chatbotkit.com) main website.
 
-The ChatBotKit team may be able to provide development and commercial support for your project. Please contact us for more information.
+**The ChatBotKit team may be able to provide development and commercial support for your project. Please contact us for more information.**
