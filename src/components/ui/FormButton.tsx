@@ -41,6 +41,7 @@ const FormButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
     )
   }
 )
+
 FormButton.displayName = 'FormButton'
 
 export default FormButton

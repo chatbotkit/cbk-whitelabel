@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/Dialog'
 import { Input } from '@/components/ui/Input'
-import { Textarea } from '@/components/ui/TextArea'
+import { Textarea } from '@/components/ui/Textrea'
 import { Select } from '@/components/ui/Select'
 import { buttonVariants } from '@/components/ui/Button'
 import FormButton from './ui/FormButton'
