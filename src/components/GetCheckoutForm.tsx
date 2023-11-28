@@ -10,6 +10,7 @@ export default function GetCheckoutForm({
     <form
       action={async () => {
         const clientSecret = await createCheckoutSession()
+
         setClientSecret(clientSecret)
       }}
     >
