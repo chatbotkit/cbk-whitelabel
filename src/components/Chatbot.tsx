@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import ChatBox from './ChatBox'
+
+import ChatBox from '@/components/ChatBox'
 import UploadFileInput from '@/components/UploadFileInput'
 
 const tabs = ['playground', 'sources']

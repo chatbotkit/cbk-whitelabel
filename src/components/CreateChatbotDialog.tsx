@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/Dialog'
-import { FormButton } from './ui/FormButton'
+import { FormButton } from '@/components/ui/FormButton'
 import { createChatbot } from '@/server-actions/chatbot-actions'
 
 export default function CreateChatbotDialog() {

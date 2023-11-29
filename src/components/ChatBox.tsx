@@ -1,14 +1,14 @@
 'use client'
 
+import Image from 'next/image'
 import { useUser } from '@clerk/nextjs'
 import { useParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-
+import { SparklesIcon } from '@heroicons/react/24/solid'
 import { useConversationManager } from '@chatbotkit/react'
 import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
-import Image from 'next/image'
-import { SparklesIcon } from '@heroicons/react/24/solid'
-import { FormButton } from './ui/FormButton'
+
+import { FormButton } from '@/components/ui/FormButton'
 import { updateChatbotBackstory } from '@/server-actions/chatbot-actions'
 
 export default function ChatBox({
@@ -25,7 +25,9 @@ export default function ChatBox({
   const params: { botId: string } = useParams()
 
   const messagesEndRef = useRef<HTMLDivElement>(null)
+
   const { user } = useUser()
+
   const [updatedBackstory, setUpdatedBackstory] = useState(backstory)
 
   const { thinking, text, setText, messages, submit } = useConversationManager({
@@ -147,7 +149,7 @@ export default function ChatBox({
         <textarea
           id="backstory"
           name="backstory"
-          className="mb-4 textarea"
+          className="textarea mb-4"
           rows={10}
           placeholder="Give your chatbot personality and style.."
           value={updatedBackstory}

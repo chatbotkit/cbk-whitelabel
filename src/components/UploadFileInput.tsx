@@ -3,15 +3,16 @@
 import { toast } from 'sonner'
 import { useState } from 'react'
 import { useParams } from 'next/navigation'
+import { useDropzone } from 'react-dropzone'
+import { TrashIcon } from '@heroicons/react/24/solid'
 import {
   ArrowDownIcon,
   CloudIcon,
   DocumentIcon,
 } from '@heroicons/react/24/outline'
-import { useDropzone } from 'react-dropzone'
-import { TrashIcon } from '@heroicons/react/24/solid'
-import { FormButton } from './ui/FormButton'
-import LoadingSpinner from './LoadingSpinner'
+
+import { FormButton } from '@/components/ui/FormButton'
+import LoadingSpinner from '@/components/LoadingSpinner'
 import { addFile, deleteFile } from '@/server-actions/dataset-actions'
 
 type FileType = {
