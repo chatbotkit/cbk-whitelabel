@@ -6,14 +6,14 @@
   .container {
     @apply max-w-7xl mx-auto px-6;
   }
+
+  /* Button Styles */
   .button {
     @apply inline-flex items-center justify-center rounded-lg text-xs font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 whitespace-nowrap h-10 px-4 py-2 bg-zinc-950 text-zinc-50 hover:bg-zinc-800/90 border border-zinc-200;
   }
-  /* Button Styles */
   .button-outline {
     @apply bg-white border text-black border-zinc-200 shadow hover:bg-zinc-100 hover:text-zinc-900;
   }
-  /* Button Sizes */
   .button-sm {
     @apply h-9 rounded-lg px-3 text-xs;
   }
@@ -28,6 +28,8 @@
   .input {
     @apply flex h-10 w-full rounded-lg border bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 border-zinc-200 shadow transition duration-150;
   }
+
+  /* Textarea Styles */
   .textarea {
     @apply flex w-full rounded-lg border bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 border-zinc-200 shadow transition duration-150;
   }
