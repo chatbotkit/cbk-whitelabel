@@ -19,7 +19,11 @@ export async function createCheckoutSession() {
     })
 
     if (!stripeCustomer) {
-      return
+      return {
+        error: {
+          message: 'Something went wrong. Please try again!',
+        },
+      }
     }
 
     await clerkClient.users.updateUser(userId as string, {
