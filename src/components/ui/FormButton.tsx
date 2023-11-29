@@ -1,31 +1,45 @@
 import * as React from 'react'
 import { useFormStatus } from 'react-dom'
 import { Slot } from '@radix-ui/react-slot'
+import { type VariantProps } from 'class-variance-authority'
+
+import { cn } from '@/lib/utils'
+import { buttonVariants } from '@/components/ui/Button'
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
   asChild?: boolean
-  pendingState: string | React.ReactNode
+  pendingText: string | React.ReactNode
 }
 
-const FormButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, pendingState, asChild = false, ...props }, ref) => {
+export const FormButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      className,
+      variant,
+      size,
+      children,
+      pendingText,
+      asChild = false,
+      ...props
+    },
+    ref
+  ) => {
     const { pending } = useFormStatus()
     const Comp = asChild ? Slot : 'button'
 
     return (
       <Comp
-        className={className}
+        className={cn(buttonVariants({ variant, size, className }))}
         disabled={pending || props.disabled}
         ref={ref}
         {...props}
       >
-        {pending ? pendingState : children}
+        {pending ? pendingText : children}
       </Comp>
     )
   }
 )
 
 FormButton.displayName = 'FormButton'
-
-export default FormButton
