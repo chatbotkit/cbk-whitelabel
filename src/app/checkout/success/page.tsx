@@ -1,10 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
-import { buttonVariants } from '@/components/ui/Button'
 import LoadingSpinner from '@/components/LoadingSpinner'
 
 export default function Page() {
@@ -44,10 +42,7 @@ export default function Page() {
     return (
       <section className="flex flex-col items-center justify-center h-screen max-w-3xl mx-auto">
         <p className="text-center">Thank you fot subscribing!</p>
-        <Link
-          className={cn(buttonVariants({ variant: 'default' }), 'mt-2')}
-          href="/dashboard"
-        >
+        <Link className="button mt-2" href="/dashboard">
           Go to dashboard
         </Link>
       </section>

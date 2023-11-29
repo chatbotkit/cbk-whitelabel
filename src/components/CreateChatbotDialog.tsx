@@ -10,10 +10,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/Dialog'
-import { Input } from '@/components/ui/Input'
-import { Textarea } from '@/components/ui/Textrea'
-import { Select } from '@/components/ui/Select'
-import { buttonVariants } from '@/components/ui/Button'
 import FormButton from './ui/FormButton'
 import { createChatbot } from '@/server-actions/chatbot-actions'
 import { toast } from 'sonner'
@@ -29,9 +25,7 @@ export default function CreateChatbotDialog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className={buttonVariants({ variant: 'default' })}>
-        Create Chatbot
-      </DialogTrigger>
+      <DialogTrigger className="button">Create Chatbot</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Create a chatbot</DialogTitle>
@@ -49,10 +43,11 @@ export default function CreateChatbotDialog() {
             <label htmlFor="name" className="text-sm font-medium block mb-2">
               Name
             </label>
-            <Input
+            <input
               id="name"
               name="name"
               placeholder="Give your chatbot a name"
+              className="input"
               onChange={(e) =>
                 setBotState({ ...botState, name: e.target.value })
               }
@@ -62,8 +57,9 @@ export default function CreateChatbotDialog() {
             <label htmlFor="model" className="text-sm font-medium block mb-2">
               Model
             </label>
-            <Select
+            <select
               defaultValue={botState.model}
+              className="input"
               name="model"
               onChange={(e) =>
                 setBotState({ ...botState, model: e.target.value })
@@ -72,7 +68,7 @@ export default function CreateChatbotDialog() {
               <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
               <option value="gpt-4">gpt-4</option>
               <option value="gpt-4-turbo">gpt-4-turbo</option>
-            </Select>
+            </select>
           </div>
 
           <div className="h-[1px] w-full bg-zinc-300" />
@@ -83,25 +79,25 @@ export default function CreateChatbotDialog() {
             >
               Backstory
             </label>
-            <Textarea
+            <textarea
               id="backstory"
               name="backstory"
+              className="textarea"
               rows={10}
               placeholder="Give your chatbot personality and style.."
               value={botState.backstory}
               onChange={(e) =>
                 setBotState({ ...botState, backstory: e.target.value })
               }
-            ></Textarea>
+            />
           </div>
           <div className="flex items-center justify-end space-x-3 pt-4">
-            <DialogClose className={buttonVariants({ variant: 'outline' })}>
-              Cancel
-            </DialogClose>
+            <DialogClose className="button button-outline">Cancel</DialogClose>
             <FormButton
-              pendingText="Processing..."
+              pendingState="Processing..."
               disabled={!botState.name || !botState.backstory}
               type="submit"
+              className="button"
             >
               Create chatbot
             </FormButton>

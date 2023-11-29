@@ -6,4 +6,49 @@
   .container {
     @apply max-w-7xl mx-auto px-6;
   }
+  .button {
+    @apply inline-flex items-center justify-center rounded-lg text-xs font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 whitespace-nowrap h-10 px-4 py-2 bg-zinc-950 text-zinc-50 hover:bg-zinc-800/90 border border-zinc-200;
+  }
+  /* Button Styles */
+  .button-outline {
+    @apply bg-white border text-black border-zinc-200 shadow hover:bg-zinc-100 hover:text-zinc-900;
+  }
+  /* Button Sizes */
+  .button-sm {
+    @apply h-9 rounded-lg px-3 text-xs;
+  }
+  .button-lg {
+    @apply h-10 rounded-lg px-6;
+  }
+  .button-icon {
+    @apply h-10 w-10;
+  }
+
+  /* Input Styles */
+  .input {
+    @apply flex h-10 w-full rounded-lg border bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 border-zinc-200 shadow transition duration-150;
+  }
+  .textarea {
+    @apply flex w-full rounded-lg border bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 border-zinc-200 shadow transition duration-150;
+  }
+
+  /* Card */
+  .card {
+    @apply rounded-xl border bg-white text-zinc-900 shadow-md overflow-hidden flex flex-col justify-start;
+  }
+  .card-header {
+    @apply flex flex-col space-y-2 p-6;
+  }
+  .card-title {
+    @apply text-lg font-medium leading-none tracking-tight;
+  }
+  .card-description {
+    @apply text-sm text-zinc-500;
+  }
+  .card-content {
+    @apply p-6 pt-0;
+  }
+  .card-footer {
+    @apply flex items-center border-t border-zinc-200 px-6 py-4 bg-zinc-50 mt-auto;
+  }
 }
