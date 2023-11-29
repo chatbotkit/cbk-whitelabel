@@ -1,19 +1,20 @@
 'use client'
 
+import { toast } from 'sonner'
+import { useState } from 'react'
+import { useParams } from 'next/navigation'
 import {
   ArrowDownIcon,
   CloudIcon,
   DocumentIcon,
 } from '@heroicons/react/24/outline'
-import { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { Button } from './ui/Button'
+
+import { Button } from '@/components/ui/Button'
 import { TrashIcon } from '@heroicons/react/24/solid'
-import { FormButton } from './ui/FormButton'
+import { FormButton } from '@/components/ui/FormButton'
+import LoadingSpinner from '@/components/LoadingSpinner'
 import { addFile, deleteFile } from '@/server-actions/dataset-actions'
-import { toast } from 'sonner'
-import { useParams } from 'next/navigation'
-import LoadingSpinner from './LoadingSpinner'
 
 type FileType = {
   id: string

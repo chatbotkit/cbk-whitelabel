@@ -11,10 +11,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/Dialog'
-import { FormButton } from './ui/FormButton'
 import { Input } from '@/components/ui/Input'
 import { Select } from '@/components/ui/Select'
-import { Textarea } from '@/components/ui/Textrea'
+import { Textarea } from '@/components/ui/Textarea'
+import { FormButton } from '@/components/ui/FormButton'
 import { buttonVariants } from '@/components/ui/Button'
 import { createChatbot } from '@/server-actions/chatbot-actions'
 

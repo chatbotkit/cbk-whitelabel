@@ -11,9 +11,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/Card'
+import { FormButton } from '@/components/ui/FormButton'
+import LoadingSpinner from '@/components/LoadingSpinner'
 import { deleteChatbot } from '@/server-actions/chatbot-actions'
-import { FormButton } from './ui/FormButton'
-import LoadingSpinner from './LoadingSpinner'
 
 type BotType = {
   id: string

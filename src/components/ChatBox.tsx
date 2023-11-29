@@ -8,10 +8,9 @@ import { SparklesIcon } from '@heroicons/react/24/solid'
 import { useConversationManager } from '@chatbotkit/react'
 import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
 
-import { Button } from './ui/Button'
-import { Slider } from './ui/Slider'
-import { Textarea } from './ui/Textarea'
-import { FormButton } from './ui/FormButton'
+import { Button } from '@/components/ui/Button'
+import { Textarea } from '@/components/ui/Textarea'
+import { FormButton } from '@/components/ui/FormButton'
 import { updateChatbotBackstory } from '@/server-actions/chatbot-actions'
 
 export default function ChatBox({
