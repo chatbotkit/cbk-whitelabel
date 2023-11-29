@@ -9,9 +9,9 @@ import {
   DocumentIcon,
 } from '@heroicons/react/24/outline'
 import { useDropzone } from 'react-dropzone'
-import { Button } from './ui/Button'
 import { TrashIcon } from '@heroicons/react/24/solid'
-import FormButton from './ui/FormButton'
+import { FormButton } from './ui/FormButton'
+import LoadingSpinner from './LoadingSpinner'
 import { addFile, deleteFile } from '@/server-actions/dataset-actions'
 
 type FileType = {

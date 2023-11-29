@@ -4,15 +4,8 @@ import { toast } from 'sonner'
 import { TrashIcon } from '@heroicons/react/24/outline'
 import { ChatBubbleBottomCenterIcon } from '@heroicons/react/24/solid'
 
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/Card'
 import { deleteChatbot } from '@/server-actions/chatbot-actions'
-import FormButton from './ui/FormButton'
+import { FormButton } from './ui/FormButton'
 import LoadingSpinner from './LoadingSpinner'
 
 type BotType = {
