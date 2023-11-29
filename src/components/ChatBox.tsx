@@ -1,15 +1,12 @@
 'use client'
-
-import Image from 'next/image'
-import { useUser } from '@clerk/nextjs'
-import { useParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import { SparklesIcon } from '@heroicons/react/24/solid'
+import Image from 'next/image'
+import { useParams } from 'next/navigation'
+import { useUser } from '@clerk/nextjs'
 import { useConversationManager } from '@chatbotkit/react'
-import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
 
-import { Button } from '@/components/ui/Button'
-import { Textarea } from '@/components/ui/Textarea'
+import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
+import { SparklesIcon } from '@heroicons/react/24/solid'
 import { FormButton } from '@/components/ui/FormButton'
 import { updateChatbotBackstory } from '@/server-actions/chatbot-actions'
 
@@ -127,14 +124,13 @@ export default function ChatBox({
             placeholder="Say something..."
             onChange={(e: any) => setText(e.target.value)}
           />
-          <Button
+          <button
             type="submit"
-            size="icon"
             disabled={!text}
-            className="h-8 w-8 absolute right-8 top-1/2 transform -translate-y-1/2"
+            className="h-8 w-8 absolute right-8 top-1/2 transform -translate-y-1/2 button button-ouline button-icon"
           >
             <PaperAirplaneIcon className="h-3 w-3" />
-          </Button>
+          </button>
         </div>
       </form>
       <form
@@ -147,18 +143,18 @@ export default function ChatBox({
         <p className="text-zinc-500 text-sm mb-3">
           Adjust your model backstory
         </p>
-        <Textarea
+        <textarea
           id="backstory"
           name="backstory"
-          className="mb-4"
+          className="mb-4 textarea"
           rows={10}
           placeholder="Give your chatbot personality and style.."
           value={updatedBackstory}
           onChange={(e) => setUpdatedBackstory(e.target.value)}
-        ></Textarea>
+        ></textarea>
         <FormButton
-          pendingText="Processing"
-          className="w-full"
+          pendingState="Processing"
+          className="button w-full"
           disabled={backstory === updatedBackstory}
         >
           Update Backstory

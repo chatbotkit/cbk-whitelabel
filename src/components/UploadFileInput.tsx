@@ -1,20 +1,18 @@
 'use client'
 
-import { toast } from 'sonner'
-import { useState } from 'react'
-import { useParams } from 'next/navigation'
 import {
   ArrowDownIcon,
   CloudIcon,
   DocumentIcon,
 } from '@heroicons/react/24/outline'
+import { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-
-import { Button } from '@/components/ui/Button'
 import { TrashIcon } from '@heroicons/react/24/solid'
-import { FormButton } from '@/components/ui/FormButton'
-import LoadingSpinner from '@/components/LoadingSpinner'
+import { FormButton } from './ui/FormButton'
 import { addFile, deleteFile } from '@/server-actions/dataset-actions'
+import { toast } from 'sonner'
+import { useParams } from 'next/navigation'
+import LoadingSpinner from './LoadingSpinner'
 
 type FileType = {
   id: string
@@ -117,21 +115,19 @@ export default function UploadFileInput({ files }: { files: FileType[] }) {
             )}
             <div className="flex items-center space-x-2 mt-auto">
               <FormButton
-                pendingText="Processing..."
+                pendingState="Processing..."
                 disabled={!file}
-                className="w-full"
+                className="w-full button"
               >
                 Upload file
               </FormButton>
-              <Button
+              <button
                 onClick={() => setFile(undefined)}
-                size="icon"
-                variant="outline"
-                className="min-w-[2.5rem]"
                 type="button"
+                className="button button-outline button-icon"
               >
-                <TrashIcon className="h-4 w-4 text-rose-500" />
-              </Button>
+                <TrashIcon className="min-h-[1rem] min-w-[1rem] text-rose-500" />
+              </button>
             </div>
           </div>
         </div>
@@ -153,12 +149,10 @@ export default function UploadFileInput({ files }: { files: FileType[] }) {
               <p className="text-sm">{item.name}</p>
             </div>
             <FormButton
-              pendingText={<LoadingSpinner />}
-              size="icon"
-              variant="outline"
-              className="h-8 w-8"
+              pendingState={<LoadingSpinner />}
+              className="h-8 w-8 button button-outline button-icon"
             >
-              <TrashIcon className="h-4 w-4 text-rose-500" />
+              <TrashIcon className="min-h-[0.9rem] min-w-[0.9rem] text-rose-500" />
             </FormButton>
           </form>
         ))}
