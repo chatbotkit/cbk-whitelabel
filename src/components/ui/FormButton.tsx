@@ -8,8 +8,19 @@ export interface ButtonProps
   pendingState: string | React.ReactNode
 }
 
-export const FormButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, pendingState, asChild = false, ...props }, ref) => {
+const FormButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      className,
+      variant,
+      size,
+      children,
+      pendingText,
+      asChild = false,
+      ...props
+    },
+    ref
+  ) => {
     const { pending } = useFormStatus()
     const Comp = asChild ? Slot : 'button'
 

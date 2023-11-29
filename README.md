@@ -1,19 +1,50 @@
 # ChatBotKit White-label
 
-Welcome to the ChatBotKit White-label Solution! This powerful tool enables you to build and deploy custom conversational AI SaaS solutions quickly and efficiently. This is the ideal for entrepreneurs, agencies, and developers who want to build their own AI platform.
+Welcome to the ChatBotKit White-label Solution! This powerful tool enables you to build and deploy custom conversational AI SaaS solutions quickly and efficiently. This is the ideal for entrepreneurs, agencies, and developers who want to build their own AI platforms.
+
+<img src="https://media.githubusercontent.com/media/chatbotkit/cbk-assets/main/whitelabel/01.png" width="30%"></img> <img src="https://media.githubusercontent.com/media/chatbotkit/cbk-assets/main/whitelabel/02.png" width="30%"></img> <img src="https://media.githubusercontent.com/media/chatbotkit/cbk-assets/main/whitelabel/03.png" width="30%"></img>
 
 ## Benefits
 
-- **Customizable:** The ChatBotKit White-label Solution is fully customizable. You can easily change the look and feel of the application to match your brand.
-- **Scalable:** The ChatBotKit White-label Solution is built on top of the ChatBotKit Node SDKs. This means that you can easily scale your application to meet the needs of your business.
-- **Secure:** The ChatBotKit White-label Solution is built on top of the Clerk authentication platform. This means that your application is secure and protected from malicious attacks.
-- **Affordable:** The ChatBotKit White-label Solution is built on top of the Stripe payment platform. This means that you can easily monetize your application and generate revenue.
-- **Open-source:** The ChatBotKit White-label Solution is open-source. This means that you can easily customize the application to meet the needs of your business.
-- **Easy to use:** The ChatBotKit White-label Solution is easy to use. This means that you can easily customize the application to meet the needs of your business.
-- **Easy to deploy:** The ChatBotKit White-label Solution is easy to deploy. This means that you can easily customize the application to meet the needs of your business.
-- **Easy to maintain:** The ChatBotKit White-label Solution is easy to maintain. This means that you can easily customize the application to meet the needs of your business.
-- **Easy to update:** The ChatBotKit White-label Solution is easy to update. This means that you can easily customize the application to meet the needs of your business.
-- **Easy to integrate:** The ChatBotKit White-label Solution is easy to integrate. This means that you can easily customize the application to meet the needs of your business.
+### 🌟 **Tailored to Your Brand**
+
+**Personalize Seamlessly:** Our ChatBotKit White-label Solution boasts unparalleled customization. Transform its appearance to resonate with your brand's unique aesthetic and ethos.
+
+### 🚀 **Scalability at Your Fingertips**
+
+**Grow Without Limits:** Built upon the robust ChatBotKit Node SDKs, our solution scales effortlessly with your business, ensuring you're always ahead of the curve.
+
+### 🔒 **Fortified Security**
+
+**Protection You Can Trust:** Leveraging the Clerk authentication platform, the ChatBotKit White-label Solution guards your application against cyber threats, ensuring peace of mind.
+
+### 💰 **Cost-Effective Monetization**
+
+**Profit with Ease:** Integrated with Stripe, our solution simplifies monetization, turning your application into a revenue-generating powerhouse.
+
+### 🛠️ **Open-Source Innovation**
+
+**Freedom to Customize:** Being open-source, our solution offers unparalleled flexibility, allowing you to tailor the application to your unique business requirements.
+
+### 🎯 **User-Friendly Design**
+
+**Effortless Experience:** With its intuitive interface, the ChatBotKit White-label Solution makes managing and customizing your application a breeze.
+
+### 🚀 **Streamlined Deployment**
+
+**Deploy with Confidence:** Our solution simplifies the deployment process, enabling you to launch your application quickly and efficiently.
+
+### 🛠️ **Hassle-Free Maintenance**
+
+**Maintain with Ease:** Designed for effortless upkeep, our solution ensures your application remains cutting-edge with minimal effort.
+
+### 🔄 **Regular Updates, No Fuss**
+
+**Stay Ahead, Effortlessly:** Our easy-to-update system means your application always enjoys the latest features and improvements without any hassle.
+
+### 🔗 **Seamless Integration**
+
+**Integrate Effortlessly:** Our solution's compatibility ensures smooth integration with your existing systems, enhancing functionality without the complexity.
 
 ## Prerequisites
 
@@ -31,8 +62,8 @@ Before you begin, ensure you have the following installed:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/chatbotkit/cbk-white-label
-   cd cbk-white-label
+   git clone https://github.com/chatbotkit/cbk-whitelabel
+   cd cbk-whitelabel
    ```
 
 2. **Install Dependencies:**
@@ -87,4 +118,8 @@ For a hassle-free deployment, use the [Vercel Platform](https://vercel.com/new?u
 
 ## Support and Contributions
 
-For support, feature requests, or contributions, please visit [our GitHub repository](https://github.com/chatbotkit/cbk-white-label).
+For support, feature requests, or contributions, please visit [our GitHub repository](https://github.com/chatbotkit/cbk-whitelabel).
+
+If you need help with ChatBotKit, please visit [ChatBotKit](https://chatbotkit.com) main website.
+
+**The ChatBotKit team may be able to provide development and commercial support for your project. Please contact us for more information.**

@@ -8,6 +8,7 @@ const tabs = ['playground', 'sources']
 
 export default function Chatbot({ bot, files }: any) {
   const [currentTab, setCurrentTab] = useState(tabs[0])
+
   return (
     <>
       <section className="pt-[3.3rem] border-b border-main bg-white">
