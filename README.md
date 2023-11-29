@@ -60,8 +60,8 @@ Before you begin, ensure you have the following installed:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/chatbotkit/cbk-white-label
-   cd cbk-white-label
+   git clone https://github.com/chatbotkit/cbk-whitelabel
+   cd cbk-whitelabel
    ```
 
 2. **Install Dependencies:**
@@ -116,7 +116,7 @@ For a hassle-free deployment, use the [Vercel Platform](https://vercel.com/new?u
 
 ## Support and Contributions
 
-For support, feature requests, or contributions, please visit [our GitHub repository](https://github.com/chatbotkit/cbk-white-label).
+For support, feature requests, or contributions, please visit [our GitHub repository](https://github.com/chatbotkit/cbk-whitelabel).
 
 If you need help with ChatBotKit, please visit [ChatBotKit](https://chatbotkit.com) main website.
 
