@@ -2,6 +2,7 @@
   "recommendations": [
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "csstools.postcss"
+    "csstools.postcss",
+    "bradlc.vscode-tailwindcss"
   ]
 }
