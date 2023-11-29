@@ -130,7 +130,7 @@ export default function ChatBox({
             disabled={!text}
             className="h-8 w-8 absolute right-8 top-1/2 transform -translate-y-1/2 button button-ouline button-icon"
           >
-            <PaperAirplaneIcon className="h-3 w-3" />
+            <PaperAirplaneIcon className="min-h-[0.75rem] min-w-[0.75rem]" />
           </button>
         </div>
       </form>
