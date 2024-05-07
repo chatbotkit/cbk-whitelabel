@@ -5,9 +5,18 @@ import { useState } from 'react'
 import ChatBox from '@/components/ChatBox'
 import UploadFileInput from '@/components/UploadFileInput'
 
+import { BotInstance } from '@chatbotkit/sdk/bot/v1'
+import { FileInstance } from '@chatbotkit/sdk/file/v1'
+
 const tabs = ['playground', 'sources']
 
-export default function Chatbot({ bot, files }: any) {
+export default function Chatbot({
+  bot,
+  files,
+}: {
+  bot: BotInstance
+  files: FileInstance[]
+}) {
   const [currentTab, setCurrentTab] = useState(tabs[0])
 
   return (
@@ -41,7 +50,6 @@ export default function Chatbot({ bot, files }: any) {
           ))}
         </div>
       </section>
-
       <section className="container mt-10">
         {currentTab === 'playground' && (
           <>

@@ -34,7 +34,7 @@ export default function Page() {
     }
 
     getSession()
-  }, [])
+  }, [router])
 
   if (status === 'open') {
     return router.push('/pricing')
@@ -55,7 +55,7 @@ export default function Page() {
     <section className="flex flex-col items-center justify-center h-screen max-w-3xl mx-auto">
       <LoadingSpinner />
       <p className="text-center mt-4">
-        We are setting up your account. <br /> Plase, don&apos;t refresh this
+        We are setting up your account. <br /> Please, don&apos;t refresh this
         page
       </p>
     </section>

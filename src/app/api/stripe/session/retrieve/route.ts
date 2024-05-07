@@ -1,13 +1,14 @@
 import { type NextRequest } from 'next/server'
 
 import chatbotkit from '@/lib/chatbotkit'
+import { captureException } from '@/lib/error'
 import stripe from '@/lib/stripe'
 
-import { auth, clerkClient } from '@clerk/nextjs'
+import { auth, clerkClient } from '@clerk/nextjs/server'
 
 export async function GET(req: NextRequest) {
   try {
-    const { userId }: { userId: string | null } = auth()
+    const { userId } = auth()
 
     if (!userId) {
       return new Response('Unauthorized', {
@@ -51,34 +52,18 @@ export async function GET(req: NextRequest) {
       chatbotkitUserId = user.privateMetadata.chatbotkitUserId as string
     }
 
-    let chatbotkitUserToken = null
-
-    if (!user.privateMetadata.chatbotkitUserToken) {
-      const { token } = await chatbotkit.partner.user.token.create(
-        chatbotkitUserId,
-        {}
-      )
-
-      chatbotkitUserToken = token as string
-    } else {
-      chatbotkitUserToken = user.privateMetadata.chatbotkitUserToken
-    }
-
     await clerkClient.users.updateUser(userId as string, {
       privateMetadata: {
         stripeCustomerId: user?.privateMetadata.stripeCustomerId,
         chatbotkitUserId,
-        chatbotkitUserToken,
       },
     })
 
     return Response.json({
       status: session.status,
     })
-  } catch (err) {
-    if (process.env.DEBUG) {
-      console.error(err)
-    }
+  } catch (e) {
+    await captureException(e)
 
     return new Response('Something went wrong', {
       status: 500,

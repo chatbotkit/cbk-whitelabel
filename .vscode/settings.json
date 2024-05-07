@@ -5,13 +5,24 @@
   "editor.rulers": [80],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "terminal.integrated.scrollback": 100000,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
+  "terminal.integrated.scrollback": 100000,
   "githubPullRequests.remotes": ["origin"],
+  "files.autoSave": "off",
   "files.associations": {
     "*.xml": "html",
     "*.svg": "html"
-  }
+  },
+  "cSpell.words": [
+    "chatbotkit",
+    "chatbots",
+    "clsx",
+    "heroicons",
+    "nextjs",
+    "skillset",
+    "sonner",
+    "whitelabel"
+  ]
 }

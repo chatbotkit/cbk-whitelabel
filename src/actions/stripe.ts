@@ -2,12 +2,19 @@
 
 import stripe from '@/lib/stripe'
 
-import { auth, clerkClient } from '@clerk/nextjs'
+import { auth, clerkClient } from '@clerk/nextjs/server'
 
-const YOUR_DOMAIN = process.env.DOMAIN_URL || 'http://localhost:3000'
+import { z } from 'zod'
+
+const env = z
+  .object({
+    STRIPE_PRICE_ID: z.string(),
+    DOMAIN_URL: z.string(),
+  })
+  .parse(process.env)
 
 export async function createCheckoutSession() {
-  const { userId }: { userId: string | null } = auth()
+  const { userId } = auth()
 
   const user = await clerkClient.users.getUser(userId as string)
 
@@ -20,11 +27,7 @@ export async function createCheckoutSession() {
     })
 
     if (!stripeCustomer) {
-      return {
-        error: {
-          message: 'Something went wrong. Please try again!',
-        },
-      }
+      throw new Error(`Something went wrong. Please try again!`)
     }
 
     await clerkClient.users.updateUser(userId as string, {
@@ -40,12 +43,15 @@ export async function createCheckoutSession() {
     ui_mode: 'embedded',
     line_items: [
       {
-        price: 'price_1NuHPNFmWYcV6uRLsdm3YQpy',
+        price: env.STRIPE_PRICE_ID,
         quantity: 1,
       },
     ],
     mode: 'subscription',
-    return_url: `${YOUR_DOMAIN}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+    return_url: new URL(
+      '/checkout/success?session_id={CHECKOUT_SESSION_ID}',
+      env.DOMAIN_URL
+    ).toString(),
   })
 
   return session.client_secret as string

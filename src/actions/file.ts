@@ -1,24 +1,15 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
 
-import { getUserAuth } from '@/lib/auth'
-import { ChatBotKit } from '@/lib/chatbotkit'
+import { getChatBotKitUserClient } from '@/lib/auth'
+import { captureException } from '@/lib/error'
 
 export async function addFile(formData: FormData, botId: string) {
-  const { chatbotkitUserToken } = await getUserAuth()
+  const cbk = await getChatBotKitUserClient()
 
   const file = formData.get('file') as File
   const buffer = await file?.arrayBuffer()
-
-  const cbk = new ChatBotKit({
-    secret: chatbotkitUserToken!,
-  })
-
-  if (!chatbotkitUserToken) {
-    return redirect('/')
-  }
 
   try {
     let dataset
@@ -54,10 +45,10 @@ export async function addFile(formData: FormData, botId: string) {
       type: 'source',
     })
 
-    // 4. Sync with the datasete
+    // 4. Sync with the dataset
     await cbk.dataset.file.sync(dataset.id, createdFile.id, {})
-  } catch (error) {
-    console.error(error)
+  } catch (e) {
+    await captureException(e)
 
     return {
       error: {
@@ -70,20 +61,12 @@ export async function addFile(formData: FormData, botId: string) {
 }
 
 export async function deleteFile(id: string) {
-  const { chatbotkitUserToken } = await getUserAuth()
-
-  const cbk = new ChatBotKit({
-    secret: chatbotkitUserToken!,
-  })
-
-  if (!chatbotkitUserToken) {
-    return redirect('/')
-  }
+  const cbk = await getChatBotKitUserClient()
 
   try {
     await cbk.file.delete(id)
-  } catch (error) {
-    console.error(error)
+  } catch (e) {
+    await captureException(e)
 
     return {
       error: {

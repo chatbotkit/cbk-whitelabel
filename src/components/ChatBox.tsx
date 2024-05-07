@@ -5,13 +5,15 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
 
+import { updateBot } from '@/actions/bot'
 import { FormButton } from '@/components/ui/FormButton'
-import { updateChatbotBackstory } from '@/server-actions/chatbot-actions'
 
 import { useConversationManager } from '@chatbotkit/react'
 import { useUser } from '@clerk/nextjs'
 import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
 import { SparklesIcon } from '@heroicons/react/24/solid'
+
+import { toast } from 'sonner'
 
 export default function ChatBox({
   datasetId,
@@ -38,7 +40,9 @@ export default function ChatBox({
     datasetId,
     model: {
       name: model,
-      temperature: 0.7,
+      config: {
+        temperature: 0.7,
+      },
     },
   })
 
@@ -127,7 +131,7 @@ export default function ChatBox({
             value={text}
             className="flex h-12 w-full rounded-lg border bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 border-zinc-200 shadow transition duration-150"
             placeholder="Say something..."
-            onChange={(e: any) => setText(e.target.value)}
+            onChange={(e) => setText(e.target.value)}
           />
           <button
             type="submit"
@@ -140,7 +144,13 @@ export default function ChatBox({
       </form>
       <form
         action={async (formData) => {
-          const error = await updateChatbotBackstory(formData, params.botId)
+          try {
+            await updateBot(formData, params.botId)
+          } catch (e) {
+            const error = e as Error
+
+            toast.error(error.message)
+          }
         }}
         className="w-full"
       >

@@ -5,10 +5,11 @@ import { useDropzone } from 'react-dropzone'
 
 import { useParams } from 'next/navigation'
 
+import { addFile, deleteFile } from '@/actions/file'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import { FormButton } from '@/components/ui/FormButton'
-import { addFile, deleteFile } from '@/server-actions/dataset-actions'
 
+import { FileInstance } from '@chatbotkit/sdk/file/v1'
 import {
   ArrowDownIcon,
   CloudIcon,
@@ -18,28 +19,20 @@ import { TrashIcon } from '@heroicons/react/24/solid'
 
 import { toast } from 'sonner'
 
-type FileType = {
-  id: string
-  name: string
-  createdAt: Date
-  updatedAt: Date
-}
-
-export default function UploadFileInput({ files }: { files: FileType[] }) {
+export default function UploadFileInput({ files }: { files: FileInstance[] }) {
   const [file, setFile] = useState<File>()
   const params: { botId: string } = useParams()
 
-  const { getRootProps, getInputProps, isDragActive, isDragReject } =
-    useDropzone({
-      maxFiles: 1,
-      accept: {
-        'application/pdf': ['.pdf'],
-        'text/plain': ['.txt'],
-      },
-      onDrop: async (acceptedFiles: File[]) => {
-        setFile(acceptedFiles[0])
-      },
-    })
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    maxFiles: 1,
+    accept: {
+      'application/pdf': ['.pdf'],
+      'text/plain': ['.txt'],
+    },
+    onDrop: async (acceptedFiles: File[]) => {
+      setFile(acceptedFiles[0])
+    },
+  })
 
   return (
     <>

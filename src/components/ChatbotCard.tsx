@@ -1,8 +1,8 @@
 'use client'
 
+import { deleteBot } from '@/actions/bot'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import { FormButton } from '@/components/ui/FormButton'
-import { deleteChatbot } from '@/server-actions/chatbot-actions'
 
 import { TrashIcon } from '@heroicons/react/24/outline'
 import { ChatBubbleBottomCenterIcon } from '@heroicons/react/24/solid'
@@ -34,22 +34,24 @@ export default function ChatbotCard({ bot }: { bot: BotType }) {
           </p>
         </div>
         <form
-          action={async (e) => {
-            const error = await deleteChatbot(bot.id)
+          action={async () => {
+            try {
+              await deleteBot(bot.id)
 
-            if (error) {
-              toast.error('Something went wrong')
-            } else {
               toast.success('Chatbot successfully deleted!')
+            } catch (e) {
+              const error = e as Error
+
+              toast.error(error.message)
             }
           }}
         >
           <FormButton
-            onClick={(e: any) => {
+            onClick={(e) => {
               e.stopPropagation()
             }}
             pendingState={<LoadingSpinner />}
-            className="h-8 w-8 button-icon button-outline"
+            className="h-8 w-8 button-icon button-outline flex justify-center items-center"
           >
             <TrashIcon className="h-4 w-4 text-rose-500" />
           </FormButton>

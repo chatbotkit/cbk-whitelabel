@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 
+import { createBot } from '@/actions/bot'
 import {
   Dialog,
   DialogClose,
@@ -11,7 +12,6 @@ import {
   DialogTrigger,
 } from '@/components/ui/Dialog'
 import { FormButton } from '@/components/ui/FormButton'
-import { createChatbot } from '@/server-actions/chatbot-actions'
 
 import { toast } from 'sonner'
 
@@ -33,10 +33,12 @@ export default function CreateChatbotDialog() {
         </DialogHeader>
         <form
           action={async (formData) => {
-            const error = await createChatbot(formData)
+            try {
+              await createBot(formData)
+            } catch (e) {
+              const error = e as Error
 
-            if (error) {
-              toast.error(error.error.message)
+              toast.error(error.message)
             }
           }}
           className="flex flex-col space-y-4"

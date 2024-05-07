@@ -104,6 +104,20 @@ Before you begin, ensure you have the following installed:
 6. **Begin Editing:**
    Start customizing your chatbot by editing `app/page.tsx`. Changes will auto-update as you modify the file.
 
+7. **Keeping In Sync:**
+   If you wish you can also keep the ChatBotKit SDK in sync with the latest version pulling the latest changes from the repository.
+
+   ```bash
+   # add the ChatBotKit repository as an upstream remote
+   git remote add upstream https://github.com/chatbotkit/cbk-whitelabel.git
+   # fetch the latest changes
+   git fetch upstream
+   # switch to the main branch
+   git checkout main
+   # merge the latest changes
+   git merge upstream/main
+   ```
+
 ## Documentation and Learning Resources
 
 - **Explore ChatBotKit:** Learn more about the capabilities and features of ChatBotKit at [ChatBotKit.com](https://chatbotkit.com).

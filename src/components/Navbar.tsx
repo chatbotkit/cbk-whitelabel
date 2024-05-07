@@ -1,16 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { useParams, usePathname } from 'next/navigation'
 
 import { UserButton } from '@clerk/nextjs'
 
 const tabs = [{ title: 'Overview', href: '/dashboard' }]
 
 export default function Navbar() {
-  const pathname = usePathname()
-  const params = useParams()
-
   return (
     <nav className="fixed top-0 w-full left-0 bg-white z-[100] border-b border-main flex flex-col justify-between">
       <div className="flex items-center justify-between h-16 container">
