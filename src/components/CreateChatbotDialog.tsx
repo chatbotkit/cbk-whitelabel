@@ -1,6 +1,5 @@
 'use client'
 
-import { toast } from 'sonner'
 import { useState } from 'react'
 
 import {
@@ -13,6 +12,8 @@ import {
 } from '@/components/ui/Dialog'
 import { FormButton } from '@/components/ui/FormButton'
 import { createChatbot } from '@/server-actions/chatbot-actions'
+
+import { toast } from 'sonner'
 
 export default function CreateChatbotDialog() {
   const [open, setOpen] = useState(false)

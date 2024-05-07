@@ -1,9 +1,9 @@
 'use server'
 
-import { getUserAuth } from '@/lib/auth'
-import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 
+import { getUserAuth } from '@/lib/auth'
 import { ChatBotKit } from '@/lib/chatbotkit'
 
 export async function addFile(formData: FormData, botId: string) {

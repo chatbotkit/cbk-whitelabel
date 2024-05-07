@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+
 import { UserButton, useUser } from '@clerk/nextjs'
 
 export default function SiteNavbar() {

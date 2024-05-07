@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
-import Toast from '@/components/Toast'
+
 import Navbar from '@/components/Navbar'
+import Toast from '@/components/Toast'
 
 export const metadata: Metadata = {
   title: 'CBK Whitelabel',

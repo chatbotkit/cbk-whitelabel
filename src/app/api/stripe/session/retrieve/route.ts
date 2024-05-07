@@ -1,8 +1,9 @@
 import { type NextRequest } from 'next/server'
-import { auth, clerkClient } from '@clerk/nextjs'
 
-import stripe from '@/lib/stripe'
 import chatbotkit from '@/lib/chatbotkit'
+import stripe from '@/lib/stripe'
+
+import { auth, clerkClient } from '@clerk/nextjs'
 
 export async function GET(req: NextRequest) {
   try {

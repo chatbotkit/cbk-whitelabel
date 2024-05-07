@@ -1,7 +1,7 @@
-import { ChatBotKit } from '@chatbotkit/sdk'
-import { stream } from '@chatbotkit/next/edge'
-
 import { getUserAuth } from '@/lib/auth'
+
+import { stream } from '@chatbotkit/next/edge'
+import { ChatBotKit } from '@chatbotkit/sdk'
 
 export const runtime = 'edge'
 

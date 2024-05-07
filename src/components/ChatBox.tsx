@@ -1,15 +1,17 @@
 'use client'
 
-import Image from 'next/image'
-import { useUser } from '@clerk/nextjs'
-import { useParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import { SparklesIcon } from '@heroicons/react/24/solid'
-import { useConversationManager } from '@chatbotkit/react'
-import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
+
+import Image from 'next/image'
+import { useParams } from 'next/navigation'
 
 import { FormButton } from '@/components/ui/FormButton'
 import { updateChatbotBackstory } from '@/server-actions/chatbot-actions'
+
+import { useConversationManager } from '@chatbotkit/react'
+import { useUser } from '@clerk/nextjs'
+import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
+import { SparklesIcon } from '@heroicons/react/24/solid'
 
 export default function ChatBox({
   datasetId,

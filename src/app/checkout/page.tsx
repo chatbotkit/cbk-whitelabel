@@ -1,15 +1,16 @@
 'use client'
 
 import { useState } from 'react'
-import { loadStripe } from '@stripe/stripe-js'
-import {
-  EmbeddedCheckoutProvider,
-  EmbeddedCheckout,
-} from '@stripe/react-stripe-js'
 
-import SiteNavbar from '@/components/SiteNavbar'
 import GetCheckoutForm from '@/components/GetCheckoutForm'
+import SiteNavbar from '@/components/SiteNavbar'
 import { createCheckoutSession } from '@/server-actions/stripe-actions'
+
+import {
+  EmbeddedCheckout,
+  EmbeddedCheckoutProvider,
+} from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!)
 

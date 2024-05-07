@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 
-import { getUserAuth } from '@/lib/auth'
 import Chatbot from '@/components/Chatbot'
+import { getUserAuth } from '@/lib/auth'
 import { ChatBotKit } from '@/lib/chatbotkit'
 
 async function getChatbot(id: string) {

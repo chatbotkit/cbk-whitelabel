@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
+import { useParams, usePathname } from 'next/navigation'
 
 import { UserButton } from '@clerk/nextjs'
-import { useParams, usePathname } from 'next/navigation'
 
 const tabs = [{ title: 'Overview', href: '/dashboard' }]
 
