@@ -118,6 +118,8 @@ Before you begin, ensure you have the following installed:
    git checkout main
    # merge the latest changes
    git merge upstream/main
+   # install dependencies
+   npm install
    ```
 
 ## Documentation and Learning Resources
