@@ -2,7 +2,9 @@
 
 Welcome to the ChatBotKit White-label Solution! This powerful tool enables you to build and deploy custom conversational AI SaaS solutions quickly and efficiently. This is the ideal for entrepreneurs, agencies, and developers who want to build their own AI platforms.
 
-<img src="https://media.githubusercontent.com/media/chatbotkit/cbk-assets/main/whitelabel/01.png" width="30%"></img> <img src="https://media.githubusercontent.com/media/chatbotkit/cbk-assets/main/whitelabel/02.png" width="30%"></img> <img src="https://media.githubusercontent.com/media/chatbotkit/cbk-assets/main/whitelabel/03.png" width="30%"></img>
+![01](https://github.com/chatbotkit/cbk-whitelabel/assets/5363404/f6ede4f1-eca0-4e5d-86ed-5c974539e30e)
+![02](https://github.com/chatbotkit/cbk-whitelabel/assets/5363404/461acb90-2501-4204-a738-3bd42f382e84)
+![03](https://github.com/chatbotkit/cbk-whitelabel/assets/5363404/b2e994d4-2a67-4774-8d6a-be146d601cb6)
 
 ## Benefits
 
